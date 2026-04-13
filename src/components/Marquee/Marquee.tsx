@@ -1,10 +1,26 @@
-import styles from './Marquee.module.css';
+import { useState, useEffect } from 'react';
+import styles from './marquee.module.css';
+import { fetchMarquee } from '@/api/marquee';
 
-export default function Marquee({ text, speed = '15s' }: { text: string, speed?: string }) {
+export default function Marquee({ speed = '15s', text: propText }: { speed?: string, text?: string }) {
+  const [messages, setMessages] = useState<string[]>([]);
+
+  useEffect(() => {
+    fetchMarquee().then((data) => {
+      if (data && data.length > 0) {
+        setMessages(data);
+      }
+    });
+  }, []);
+
+  const displayText = messages.length > 0 ? messages.join('    /    ') : propText;
+
+  if (!displayText) return null;
+
   return (
     <div className={styles.marqueeWrapper}>
       <div className={styles.marqueeTrack} style={{ animationDuration: speed }}>
-        <span className={styles.marqueeText}>{text}</span>
+        <span className={styles.marqueeText}>{displayText}</span>
       </div>
     </div>
   );

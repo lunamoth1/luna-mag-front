@@ -1,0 +1,26 @@
+.card {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 1.5rem;
+  background: var(--surface-color, var(--color-white));
+  border: 1px solid var(--border-color, var(--color-black));
+  border-radius: 8px;
+  text-decoration: none;
+  color: var(--text-color, var(--color-black));
+  transition: all 0.2s ease-in-out;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+.card h3 {
+  margin: 0;
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: var(--heading-color, var(--color-black));
+}
+
+.arrow {
+  font-size: 1.2rem;
+  color: var(--color-black);
+  transition: transform 0.2s;
+}

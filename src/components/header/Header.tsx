@@ -1,8 +1,11 @@
 import { JSX } from 'react';
-import { Link } from 'react-router-dom';
-import styles from './Header.module.css';
+import { Link, useLocation } from 'react-router-dom';
+import styles from './header.module.css';
 
-export default function Header(): JSX.Element {
+export default function Header(): JSX.Element | null {
+  const location = useLocation();
+  if (location.pathname.startsWith('/admin')) return null;
+
   return (
     <header className={styles.header}>
       <nav className={styles.nav}>

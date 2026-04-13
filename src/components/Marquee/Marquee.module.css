@@ -2,11 +2,14 @@
   overflow: hidden;
   white-space: nowrap;
   width: 100%;
-  background-color: #111;
-  color: #fff;
+  background-color: #171515;
+  color: #FFFD87;
   padding: 12px 0;
   display: flex;
   align-items: center;
+  border-color: #98FF59;
+  border-width: 1px 0 1px 0;
+  border-style: solid;
 }
 
 .marqueeTrack {
@@ -20,9 +23,15 @@
   font-weight: 500;
   text-transform: uppercase;
   letter-spacing: 2px;
+  white-space: pre;
 }
 
 @keyframes scrollLeft {
-  0% { transform: translateX(0); }
-  100% { transform: translateX(-100%); }
+  0% {
+    transform: translateX(0);
+  }
+
+  100% {
+    transform: translateX(-100%);
+  }
 }
