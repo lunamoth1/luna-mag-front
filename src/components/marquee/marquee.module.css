@@ -2,12 +2,12 @@
   overflow: hidden;
   white-space: nowrap;
   width: 100%;
-  background-color: #171515;
-  color: #FFFD87;
+  background-color: var(--color-dark);
+  color: var(--color-yellow);
   padding: 12px 0;
   display: flex;
   align-items: center;
-  border-color: #98FF59;
+  border-color: var(--color-green);
   border-width: 1px 0 1px 0;
   border-style: solid;
 }

@@ -1,0 +1,83 @@
+.loginWrapper {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--color-white);
+  z-index: 1000;
+  color: #1a1a1a;
+}
+
+.loginCard {
+  width: 100%;
+  max-width: 320px;
+  padding: 20px;
+  text-align: center;
+}
+
+.title {
+  font-size: 18px;
+  margin-bottom: 24px;
+  font-weight: 500;
+  color: var(--color-black);
+}
+
+.inputGroup {
+  margin-bottom: 20px;
+}
+
+.pinInput {
+  width: 100%;
+  border: 1px solid #e0e0e0;
+  background: #f9f9f9;
+  border-radius: 8px;
+  padding: 12px;
+  font-size: 24px;
+  text-align: center;
+  letter-spacing: 8px;
+  color: var(--color-black);
+  transition: border-color 0.2s ease;
+}
+
+.pinInput:focus {
+  border-color: #000000;
+  outline: none;
+}
+
+.error {
+  color: #ff3b30;
+  font-size: 13px;
+  margin-top: 8px;
+  min-height: 16px;
+  opacity: 0;
+}
+
+.errorActive {
+  opacity: 1;
+}
+
+.button {
+  width: 100%;
+  padding: 12px;
+  border-radius: 8px;
+  background-color: var(--color-black);
+  color: var(--color-white);
+  font-weight: 500;
+  font-size: 15px;
+  transition: opacity 0.2s ease;
+  border: none;
+  cursor: pointer;
+}
+
+.button:hover {
+  opacity: 0.9;
+}
+
+.button:disabled {
+  background-color: #cccccc;
+  cursor: not-allowed;
+}
