@@ -5,9 +5,11 @@ const API_URL = import.meta.env.VITE_STRAPI_URL;
 export async function fetchMarquee() {
     try {
         const response = await axios.get(`${API_URL}/api/marquee?populate=items`);
-
-        const items = response.data.data.items;
-        const textStrings = items.map((item: { id: number; text: string }) => item.text);
+        
+        const items = response.data?.data?.items || [];
+        const textStrings = Array.isArray(items) 
+            ? items.map((item: { id: number; text: string }) => item.text)
+            : [];
 
         return textStrings;
 

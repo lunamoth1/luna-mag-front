@@ -6,11 +6,15 @@ export default function Marquee({ speed = '15s', text: propText }: { speed?: str
   const [messages, setMessages] = useState<string[]>([]);
 
   useEffect(() => {
-    fetchMarquee().then((data) => {
-      if (data && data.length > 0) {
-        setMessages(data);
-      }
-    });
+    fetchMarquee()
+      .then((data) => {
+        if (Array.isArray(data) && data.length > 0) {
+          setMessages(data);
+        }
+      })
+      .catch((err) => {
+        console.error('Error in Marquee effect:', err);
+      });
   }, []);
 
   const displayText = messages.length > 0 ? messages.join('    /    ') : propText;
