@@ -8,6 +8,19 @@
   padding: 20px;
 }
 
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  max-width: 50%;
+}
+
+.listItem {
+  color: var(--color-white);
+  border: 1px solid var(--color-white);
+  padding: 10px;
+}
+
 .marquee {
   position: absolute;
   bottom: 10%;

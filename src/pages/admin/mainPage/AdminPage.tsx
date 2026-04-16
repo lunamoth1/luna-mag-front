@@ -21,6 +21,10 @@ export default function AdminPage(): JSX.Element {
             title="Бегущая строка"
             to="/admin/marquee"
           />
+          <AdminCard
+            title="Креаторы"
+            to="/admin/creators"
+          />
         </div>
       </div>
     </>

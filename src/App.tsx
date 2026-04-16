@@ -3,6 +3,7 @@ import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
 import HomePage from './pages/home/HomePage';
 import AdminPage from './pages/admin/mainPage/AdminPage';
 import MarqueeAdminPage from './pages/admin/marqueePage/MarqueeAdminPage';
+import CreatorsAdminPage from './pages/admin/creatorsPage/CreatorsAdminPage';
 import PinLogin from './pages/admin/login/PinLogin';
 
 import SideNav from './components/sideNav/SideNav';
@@ -30,6 +31,7 @@ function AppLayout() {
 
           <Route path="/admin" element={<AdminPage />} />
           <Route path="/admin/marquee" element={<MarqueeAdminPage />} />
+          <Route path="/admin/creators" element={<CreatorsAdminPage />} />
         </Routes>
       </main>
     </div>
