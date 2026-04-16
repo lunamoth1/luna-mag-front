@@ -1,5 +1,12 @@
 @import './palette.css';
 
+@font-face {
+  font-family: 'MS Sans Serif';
+  src: url('./assets/fonts/ms-sans-serif-1.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+}
+
 *,
 *::before,
 *::after {
