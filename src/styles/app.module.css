@@ -1,8 +1,15 @@
 .mainContainer {
-	background-color: var(--color-dark);
 	display: flex;
 	flex-direction: column;
 	min-height: 100vh;
+	background-color: var(--color-dark);
+}
+
+.adminContainer {
+	display: flex;
+	flex-direction: column;
+	min-height: 100vh;
+	background-color: var(--color-white);
 }
 
 .contentContainer {

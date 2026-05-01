@@ -23,7 +23,7 @@ function AppLayout() {
 	}
 
 	return (
-		<div className={styles.mainContainer}>
+		<div className={isAdmin ? styles.adminContainer : styles.mainContainer}>
 			{!isAdmin && <Header />}
 
 			<div className={styles.contentContainer}>
