@@ -1,31 +1,30 @@
 .sideNav {
-  width: 250px;
-  height: 100vh;
-  position: sticky;
-  top: 0;
-  display: flex;
-  flex-direction: column;
-  background-color: var(--color-dark, #171515);
-  color: var(--color-white, #ffffff);
-  border-right: 1px solid var(--color-gray-800, #424242);
-  padding: 40px 20px;
+	width: 250px;
+	height: 100%;
+	position: sticky;
+	top: 0;
+	display: flex;
+	flex-direction: column;
+	background-color: var(--color-dark, #171515);
+	color: var(--color-white, #ffffff);
+	/* border-right: 1px solid var(--color-gray-800, #424242); */
+	padding: 40px 80px;
 }
 
-
 .navList {
-  display: flex;
-  flex-direction: column;
-  width: max-content;
-  gap: 9px;
-  border: 1px solid var(--color-green);
-  border-bottom: 0;
-  border-right: 0;
-  padding-left: 25px;
-  padding-top: 6px;
+	display: flex;
+	flex-direction: column;
+	width: max-content;
+	gap: 9px;
+	/* border: 1px solid var(--color-green);
+	border-bottom: 0;
+	border-right: 0; */
+	/* padding-left: 25px; */
+	/* padding-top: 6px; */
 }
 
 .navItem {
-  list-style: none;
+	list-style: none;
 }
 
 /* .navLink {
