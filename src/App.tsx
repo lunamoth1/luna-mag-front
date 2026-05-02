@@ -1,6 +1,13 @@
 import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
 
-import HomePage from "./pages/home/HomePage";
+import MagazinePage from "./pages/magazine/MagazinePage";
+import ArtistsPage from "./pages/artists/ArtistsPage";
+import GalleriesPage from "./pages/galleries/GalleriesPage";
+import PartnersPage from "./pages/partners/PartnersPage";
+import EventsPage from "./pages/events/EventsPage";
+import BlogPage from "./pages/blog/BlogPage";
+import ContactsPage from "./pages/contacts/ContactsPage";
+
 import AdminPage from "./pages/admin/mainPage/AdminPage";
 import MarqueeAdminPage from "./pages/admin/marqueePage/MarqueeAdminPage";
 import CreatorsAdminPage from "./pages/admin/creatorsPage/CreatorsAdminPage";
@@ -31,7 +38,13 @@ function AppLayout() {
 
 				<main className={styles.navigationContent}>
 					<Routes>
-						<Route path="/" element={<HomePage />} />
+						<Route path="/" element={<MagazinePage />} />
+						<Route path="/artists" element={<ArtistsPage />} />
+						<Route path="/galleries" element={<GalleriesPage />} />
+						<Route path="/partners" element={<PartnersPage />} />
+						<Route path="/events" element={<EventsPage />} />
+						<Route path="/blog" element={<BlogPage />} />
+						<Route path="/contacts" element={<ContactsPage />} />
 
 						<Route path="/admin" element={<AdminPage />} />
 						<Route path="/admin/marquee" element={<MarqueeAdminPage />} />

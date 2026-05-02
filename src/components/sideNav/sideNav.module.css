@@ -1,5 +1,5 @@
 .sideNav {
-	width: 250px;
+	max-width: 250px;
 	height: 100%;
 	position: sticky;
 	top: 0;
@@ -7,8 +7,7 @@
 	flex-direction: column;
 	background-color: var(--color-dark, #171515);
 	color: var(--color-white, #ffffff);
-	/* border-right: 1px solid var(--color-gray-800, #424242); */
-	padding: 40px 80px;
+	padding: 20px clamp(40px, 5vw, 80px);
 }
 
 .navList {
@@ -16,26 +15,8 @@
 	flex-direction: column;
 	width: max-content;
 	gap: 9px;
-	/* border: 1px solid var(--color-green);
-	border-bottom: 0;
-	border-right: 0; */
-	/* padding-left: 25px; */
-	/* padding-top: 6px; */
 }
 
 .navItem {
 	list-style: none;
 }
-
-/* .navLink {
-  font-size: 20px;
-  text-transform: lowercase;
-  letter-spacing: 1px;
-  color: var(--color-gray-300, #e0e0e0);
-  transition: color 0.3s ease, padding-left 0.3s ease;
-  display: inline-block;
-}  */
-
-/* .navLink:hover {
-  color: var(--color-yellow, #FFFD87);
-} */

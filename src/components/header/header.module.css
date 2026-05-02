@@ -2,4 +2,30 @@
 	background-color: var(--color-dark);
 	height: fit-content;
 	width: 100%;
+	position: relative;
+	margin-bottom: 20px;
+}
+
+.img {
+	width: 100%;
+	height: auto;
+	object-fit: cover;
+}
+
+.text {
+	font-size: clamp(24px, 5vw, 36px);
+	font-weight: 700;
+	color: var(--color-blue);
+	padding-bottom: 10px;
+	position: absolute;
+	bottom: 0;
+	left: 15%;
+	text-transform: uppercase;
+}
+
+@media (max-width: 720px) {
+	.img {
+		height: 89px;
+		object-fit: cover;
+	}
 }
