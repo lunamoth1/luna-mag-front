@@ -24,3 +24,10 @@
 	flex-direction: column;
 	overflow-x: hidden;
 }
+
+.marquee {
+	position: absolute;
+	bottom: 10%;
+	left: 0;
+	right: 0;
+}

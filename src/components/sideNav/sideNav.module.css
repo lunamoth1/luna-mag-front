@@ -1,5 +1,5 @@
 .sideNav {
-	max-width: 250px;
+	width: clamp(170px, 20vw, 335px);
 	height: 100%;
 	position: sticky;
 	top: 0;

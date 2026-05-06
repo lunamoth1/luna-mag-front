@@ -16,6 +16,7 @@ import CreatorsAdminPage from "./pages/admin/creatorsPage/CreatorsAdminPage";
 import PinLogin from "./pages/admin/login/PinLogin";
 
 import SideNav from "./components/sideNav/SideNav";
+import Marquee from "./components/marquee/Marquee";
 import Header from "./components/header/Header";
 
 import { fetchCreators } from "./api/creator";
@@ -51,6 +52,12 @@ function AppLayout() {
 
 			<div className={styles.contentContainer}>
 				{!isAdmin && <SideNav />}
+
+				{!isAdmin && (
+					<div className={styles.marquee}>
+						<Marquee speed="20s" />
+					</div>
+				)}
 
 				<main className={styles.navigationContent}>
 					<Routes>
