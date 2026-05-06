@@ -3,6 +3,7 @@ import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
 
 import MagazinePage from "./pages/magazine/MagazinePage";
 import ArtistsPage from "./pages/artists/ArtistsPage";
+import ArtistPage from "./pages/artist/ArtistPage";
 import GalleriesPage from "./pages/galleries/GalleriesPage";
 import PartnersPage from "./pages/partners/PartnersPage";
 import EventsPage from "./pages/events/EventsPage";
@@ -55,6 +56,7 @@ function AppLayout() {
 					<Routes>
 						<Route path="/" element={<MagazinePage />} />
 						<Route path="/artists" element={<ArtistsPage />} />
+						<Route path="/artist/:instagram" element={<ArtistPage />} />
 						<Route path="/galleries" element={<GalleriesPage />} />
 						<Route path="/partners" element={<PartnersPage />} />
 						<Route path="/events" element={<EventsPage />} />

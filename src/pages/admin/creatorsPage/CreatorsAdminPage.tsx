@@ -36,8 +36,8 @@ export default function CreatorsAdminPage(): JSX.Element {
 	const handleEdit = (creator: Creator) => {
 		setEditingDocId(creator.documentId);
 		setInstagram(creator.instagram || "");
-		setPhoto(creator.photo || "");
-		setWorksPhotos(creator.worksPhotos || []);
+		// setPhoto(creator.photo || "");
+		// setWorksPhotos(creator.worksPhotos || []);
 		setBased(creator.based || "");
 		setStyle(creator.style || "");
 		setHide(!!creator.hide);
@@ -47,8 +47,8 @@ export default function CreatorsAdminPage(): JSX.Element {
 	const handleCancel = () => {
 		setEditingDocId(null);
 		setInstagram("");
-		setPhoto("");
-		setWorksPhotos([]);
+		// setPhoto("");
+		// setWorksPhotos([]);
 		setBased("");
 		setStyle("");
 		setHide(false);
@@ -59,11 +59,22 @@ export default function CreatorsAdminPage(): JSX.Element {
 		if (!instagram.trim()) return alert("Instagram обязателен");
 		setIsSaving(true);
 		try {
-			const creatorData = { instagram, photo, worksPhotos, based, style, hide };
 			if (editingDocId) {
-				await updateCreator(editingDocId, creatorData);
+				await updateCreator(editingDocId, {
+					instagram,
+					based,
+					style,
+					hide,
+				});
 			} else {
-				await addCreator(creatorData);
+				await addCreator({
+					instagram,
+					based,
+					style,
+					hide,
+					// photo,
+					// worksPhotos,
+				});
 			}
 			handleCancel();
 			await loadCreators();
@@ -115,6 +126,7 @@ export default function CreatorsAdminPage(): JSX.Element {
 								value={photo}
 								onChange={(e) => setPhoto(e.target.value)}
 								className={styles.input}
+								disabled
 							/>
 						</div>
 						<div className={styles.inputField}>
@@ -131,6 +143,7 @@ export default function CreatorsAdminPage(): JSX.Element {
 									)
 								}
 								className={styles.input}
+								disabled
 							/>
 						</div>
 						<div className={styles.inputField}>
@@ -232,14 +245,15 @@ export default function CreatorsAdminPage(): JSX.Element {
 														href={url}
 														target="_blank"
 														rel="noopener noreferrer"
+														style={{ marginRight: 4 }}
 													>
-														<p>
-															<b>Скрыт:</b> {creator.hide ? "Да" : "Нет"}
-														</p>
 														[{i + 1}]
 													</a>
 												))
 											: "—"}
+									</p>
+									<p>
+										<b>Скрыт:</b> {creator.hide ? "Да" : "Нет"}
 									</p>
 								</div>
 
