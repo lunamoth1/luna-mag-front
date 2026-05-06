@@ -12,15 +12,12 @@
 	object-fit: cover;
 }
 
-.text {
-	font-size: clamp(24px, 5vw, 36px);
-	font-weight: 700;
-	color: var(--color-blue);
-	padding-bottom: 10px;
+.logo {
+	width: 300px;
+	height: auto;
 	position: absolute;
-	bottom: 0;
-	left: 15%;
-	text-transform: uppercase;
+	bottom: 10px;
+	left: 20%;
 }
 
 @media (max-width: 720px) {

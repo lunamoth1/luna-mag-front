@@ -1,0 +1,40 @@
+.container {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 200px;
+	max-width: 1200px;
+	background-color: #f5f5f5;
+	gap: 10%;
+	margin-right: 20px;
+	padding: 0 10px;
+}
+
+.newsText {
+	font-size: 40px;
+	font-family: "Baskervville", serif;
+	font-weight: 400;
+	color: #333;
+	text-transform: uppercase;
+}
+
+.newsItem {
+	font-size: 18px;
+	font-family: "Baskervville", serif;
+	font-weight: 400;
+	color: #000000;
+	margin-top: 4px;
+}
+
+@media (max-width: 720px) {
+	.container {
+		flex-direction: column;
+		gap: 20px;
+		height: auto;
+		padding: 20px 0;
+	}
+
+	.newsText {
+		font-size: 30px;
+	}
+}

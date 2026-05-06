@@ -1,8 +1,8 @@
-import { useEffect, useState } from "react";
+import { JSX, useEffect, useState } from "react";
 import Marquee from "../../components/marquee/Marquee";
+import HomeBanner from "@/components/homeBanner/HomeBanner";
 import { fetchCreators, Creator } from "../../api/creator";
 import styles from "./magazinePage.module.css";
-import { JSX } from "react";
 
 export default function MagazinePage(): JSX.Element {
 	const [creators, setCreators] = useState<Creator[]>([]);
@@ -14,6 +14,8 @@ export default function MagazinePage(): JSX.Element {
 	return (
 		<div className={styles.main}>
 			<div className={styles.container}>
+				<HomeBanner />
+
 				<ul className={styles.list}>
 					{creators.length > 0 &&
 						creators.map((c) => (
