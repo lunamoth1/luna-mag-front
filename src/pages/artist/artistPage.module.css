@@ -1,0 +1,35 @@
+.container {
+	display: flex;
+	flex-direction: row;
+	margin-bottom: 300px;
+}
+
+.worksList {
+	display: flex;
+	flex-wrap: wrap;
+	max-width: 700px;
+	margin-right: 100px;
+}
+
+.workImg {
+	width: 300px;
+}
+
+.name {
+	font-size: 2rem;
+	font-weight: bold;
+	margin-bottom: 30px;
+	color: var(--color-white);
+}
+
+.info {
+	font-size: 16px;
+	color: var(--color-white);
+}
+
+.notFound {
+	text-align: center;
+	color: #c00;
+	font-size: 1.3rem;
+	margin-top: 48px;
+}

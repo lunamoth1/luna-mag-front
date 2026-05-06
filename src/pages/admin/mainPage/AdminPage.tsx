@@ -1,8 +1,8 @@
 import { JSX } from "react";
-import styles from "./adminPage.module.css";
 import AdminCard from "@/components/adminCard/AdminCard";
 import AdminHeader from "@/components/adminHeader/AdminHeader";
 import { useAdminStore } from "@/store/adminStore";
+import styles from "./adminPage.module.css";
 
 export default function AdminPage(): JSX.Element {
 	const { logout } = useAdminStore();
