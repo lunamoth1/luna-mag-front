@@ -10,7 +10,9 @@ interface Props {
 
 export default function ArtistButton({ creator }: Props): JSX.Element {
 	const photoUrl = creator.photo?.url
-		? new URL(creator.photo.url, API_URL).href
+		? creator.photo.url.startsWith("http")
+			? creator.photo.url
+			: new URL(creator.photo.url, API_URL).href
 		: undefined;
 	const navigate = useNavigate();
 
