@@ -1,6 +1,6 @@
 import { useParams } from "react-router-dom";
 import { useCreatorsStore } from "@/store/creatorsStore";
-import { API_URL } from "@/constants";
+import { getImageUrl } from "@/utils/imageUrl";
 import styles from "./artistPage.module.css";
 
 export default function ArtistPage() {
@@ -22,9 +22,7 @@ export default function ArtistPage() {
 						<img
 							key={img.id || i}
 							className={styles.workImg}
-							src={
-								img.url.startsWith("http") ? img.url : `${API_URL}${img.url}`
-							}
+							src={getImageUrl(img.url)}
 							alt={img.alternativeText || `work ${i + 1}`}
 						/>
 					))}

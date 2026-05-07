@@ -10,11 +10,6 @@ export async function fetchCreators(): Promise<Creator[]> {
 
 		const data = res.data?.data || [];
 
-		// Логируем структуру для отладки
-		if (data.length > 0) {
-			console.log("Creator data sample:", JSON.stringify(data[0], null, 2));
-		}
-
 		return data.map((item: Creator) => ({
 			id: item.id,
 			documentId: item.documentId,

@@ -1,6 +1,6 @@
 import { JSX } from "react";
 import { useNavigate } from "react-router-dom";
-import { API_URL } from "@/constants";
+import { getImageUrl } from "@/utils/imageUrl";
 import styles from "./artistButton.module.css";
 import type { Creator } from "@/types/api/creator";
 
@@ -9,11 +9,7 @@ interface Props {
 }
 
 export default function ArtistButton({ creator }: Props): JSX.Element {
-	const photoUrl = creator.photo?.url
-		? creator.photo.url.startsWith("http")
-			? creator.photo.url
-			: `${API_URL}${creator.photo.url}`
-		: undefined;
+	const photoUrl = getImageUrl(creator.photo?.url);
 	const navigate = useNavigate();
 
 	const handleClick = () => {
