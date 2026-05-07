@@ -1,6 +1,6 @@
 import { JSX } from "react";
-import styles from "./newsAllNews.module.css";
 import { NewsItem } from "@/types/api/news";
+import styles from "./newsAllNews.module.css";
 
 interface NewsAllNewsProps {
 	news: NewsItem[];

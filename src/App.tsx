@@ -58,12 +58,6 @@ function AppLayout() {
 			<div className={styles.contentContainer}>
 				{!isAdmin && <SideNav />}
 
-				{!isAdmin && (
-					<div className={styles.marquee}>
-						<Marquee speed="20s" />
-					</div>
-				)}
-
 				<main className={styles.navigationContent}>
 					<Routes>
 						<Route path="/" element={<MagazinePage />} />
@@ -82,6 +76,12 @@ function AppLayout() {
 					</Routes>
 				</main>
 			</div>
+
+			{!isAdmin && (
+				<div className={styles.marquee}>
+					<Marquee speed="20s" />
+				</div>
+			)}
 		</div>
 	);
 }

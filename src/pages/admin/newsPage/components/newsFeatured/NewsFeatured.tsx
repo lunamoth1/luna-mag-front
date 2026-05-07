@@ -1,7 +1,7 @@
 import { JSX, useState } from "react";
-import { NewsItem } from "@/types/api/news";
-import styles from "./newsFeatured.module.css";
 import { updateNewsOrder } from "@/api/news";
+import styles from "./newsFeatured.module.css";
+import type { NewsItem } from "@/types/api/news";
 
 interface NewsFeaturedProps {
 	news: NewsItem[];
