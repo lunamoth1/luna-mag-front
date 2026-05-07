@@ -19,6 +19,7 @@ export default function AdminPage(): JSX.Element {
 				<div className={styles.menuList}>
 					<AdminCard title="Бегущая строка" to="/admin/marquee" />
 					<AdminCard title="Креаторы" to="/admin/creators" />
+					<AdminCard title="Новости" to="/admin/news" />
 				</div>
 			</div>
 		</>

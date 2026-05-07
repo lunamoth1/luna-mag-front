@@ -1,5 +1,5 @@
-import styles from "./contactsPage.module.css";
 import { JSX } from "react";
+import styles from "./contactsPage.module.css";
 
 export default function ContactsPage(): JSX.Element {
 	return (

@@ -7,7 +7,7 @@ import {
 } from "@/api/creator";
 import AdminHeader from "@/components/adminHeader/AdminHeader";
 import styles from "./creatorsAdminPage.module.css";
-import { Creator } from "@/types/api/creator";
+import type { Creator } from "@/types/api/creator";
 
 export default function CreatorsAdminPage(): JSX.Element {
 	const [creators, setCreators] = useState<Creator[]>([]);

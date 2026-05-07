@@ -1,5 +1,5 @@
-import styles from "./partnersPage.module.css";
 import { JSX } from "react";
+import styles from "./partnersPage.module.css";
 
 export default function PartnersPage(): JSX.Element {
 	return (

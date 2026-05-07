@@ -10,17 +10,20 @@ import EventsPage from "./pages/events/EventsPage";
 import BlogPage from "./pages/blog/BlogPage";
 import ContactsPage from "./pages/contacts/ContactsPage";
 
+import PinLogin from "./pages/admin/login/PinLogin";
 import AdminPage from "./pages/admin/mainPage/AdminPage";
 import MarqueeAdminPage from "./pages/admin/marqueePage/MarqueeAdminPage";
 import CreatorsAdminPage from "./pages/admin/creatorsPage/CreatorsAdminPage";
-import PinLogin from "./pages/admin/login/PinLogin";
+import NewsAdminPage from "./pages/admin/newsPage/NewsAdminPage";
 
 import SideNav from "./components/sideNav/SideNav";
 import Marquee from "./components/marquee/Marquee";
 import Header from "./components/header/Header";
 
-import { fetchCreators } from "./api/creator";
+import { fetchNews } from "./api/news";
 import { fetchMarquee } from "./api/marquee";
+import { fetchCreators } from "./api/creator";
+import { useNewsStore } from "./store/newsStore";
 import { useAdminStore } from "./store/adminStore";
 import { useMarqueeStore } from "./store/marqueeStore";
 import { useCreatorsStore } from "./store/creatorsStore";
@@ -32,13 +35,15 @@ function AppLayout() {
 	const isAdmin = location.pathname.startsWith("/admin");
 	const { isAuthenticated } = useAdminStore();
 
-	const setCreators = useCreatorsStore((s) => s.setCreators);
+	const setNews = useNewsStore((s) => s.setNews);
 	const setMarquee = useMarqueeStore((s) => s.setMarquee);
+	const setCreators = useCreatorsStore((s) => s.setCreators);
 
 	useEffect(() => {
-		fetchCreators().then(setCreators);
+		fetchNews().then(setNews);
 		fetchMarquee().then(setMarquee);
-	}, [setCreators, setMarquee]);
+		fetchCreators().then(setCreators);
+	}, [setCreators, setMarquee, setNews]);
 
 	const showPinLogin = isAdmin && !isAuthenticated;
 
@@ -73,6 +78,7 @@ function AppLayout() {
 						<Route path="/admin" element={<AdminPage />} />
 						<Route path="/admin/marquee" element={<MarqueeAdminPage />} />
 						<Route path="/admin/creators" element={<CreatorsAdminPage />} />
+						<Route path="/admin/news" element={<NewsAdminPage />} />
 					</Routes>
 				</main>
 			</div>

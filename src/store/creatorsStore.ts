@@ -1,8 +1,9 @@
 import { create } from "zustand";
+import type { Creator } from "@/types/api/creator";
 
 interface CreatorsState {
-	creators: any[];
-	setCreators: (creators: any[]) => void;
+	creators: Creator[];
+	setCreators: (creators: Creator[]) => void;
 }
 
 export const useCreatorsStore = create<CreatorsState>((set) => ({
