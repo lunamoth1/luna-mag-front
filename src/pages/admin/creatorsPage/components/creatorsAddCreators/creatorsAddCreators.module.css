@@ -8,12 +8,12 @@
 .emptyState {
 	text-align: center;
 	padding: 3rem;
-	color: #888;
+	color: var(--color-gray-600);
 }
 
 .item {
-	background: #f9f9f9;
-	border: 1px solid #eee;
+	background: var(--color-white);
+	border: 1px solid var(--color-gray-100);
 	padding: 1rem;
 	border-radius: 8px;
 	display: flex;
@@ -24,13 +24,13 @@
 .itemInfo h3 {
 	margin: 0;
 	font-size: 1.2rem;
-	color: var(--color-black);
+	color: var(--color-dark);
 }
 
 .itemInfo p {
 	margin: 0.5rem 0 0;
 	font-size: 0.9rem;
-	color: #666;
+	color: var(--color-gray-600);
 	display: -webkit-box;
 	-webkit-line-clamp: 2;
 	-webkit-box-orient: vertical;
@@ -43,8 +43,8 @@
 }
 
 .editButton {
-	background: #007bff;
-	color: white;
+	background: var(--color-blue);
+	color: var(--color-white);
 	border: none;
 	padding: 0.5rem 1rem;
 	border-radius: 4px;
@@ -53,12 +53,12 @@
 }
 
 .editButton:hover {
-	background: #0056b3;
+	background: var(--color-dark-blue);
 }
 
 .deleteButton {
-	background: #ff4d4f;
-	color: white;
+	background: var(--color-red);
+	color: var(--color-white);
 	border: none;
 	padding: 0.5rem 1rem;
 	border-radius: 4px;
@@ -67,5 +67,5 @@
 }
 
 .deleteButton:hover {
-	background: #d9363e;
+	background: var(--color-dark-red);
 }

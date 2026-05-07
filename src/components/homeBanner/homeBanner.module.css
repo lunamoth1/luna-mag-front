@@ -4,7 +4,7 @@
 	align-items: center;
 	height: 200px;
 	max-width: 1100px;
-	background-color: #f5f5f5;
+	background-color: var(--color-gray-100);
 	gap: 10%;
 	margin-right: 20px;
 	padding: 0 10px;
@@ -14,7 +14,7 @@
 	font-size: 40px;
 	font-family: "Baskervville", serif;
 	font-weight: 400;
-	color: #333;
+	color: var(--color-dark);
 	text-transform: uppercase;
 }
 
@@ -22,7 +22,7 @@
 	font-size: 18px;
 	font-family: "Baskervville", serif;
 	font-weight: 400;
-	color: #000000;
+	color: var(--color-dark);
 	margin-top: 4px;
 }
 

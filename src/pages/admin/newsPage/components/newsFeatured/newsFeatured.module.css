@@ -6,8 +6,8 @@
 }
 
 .editButton {
-	background: #007bff;
-	color: white;
+	background: var(--color-blue);
+	color: var(--color-white);
 	border: none;
 	padding: 0.5rem 1rem;
 	border-radius: 4px;
@@ -17,18 +17,18 @@
 }
 
 .editButton:hover {
-	background: #0056b3;
+	background: var(--color-dark-blue);
 }
 
 .emptyState {
 	text-align: center;
 	padding: 3rem;
-	color: #888;
+	color: var(--color-gray-500);
 }
 
 .featuredItem {
-	background: #fffbf0;
-	border: 2px solid #ffd700;
+	background: var(--color-gray-100);
+	border: 2px solid var(--color-gold);
 	padding: 1rem;
 	border-radius: 8px;
 	display: flex;
@@ -40,7 +40,7 @@
 .orderNumber {
 	font-size: 1.5rem;
 	font-weight: bold;
-	color: #ffd700;
+	color: var(--color-gold);
 	min-width: 40px;
 	text-align: center;
 	padding: 0.5rem 0;
@@ -56,14 +56,14 @@
 .itemInfo h3 {
 	margin: 0;
 	font-size: 1.2rem;
-	color: var(--color-black);
+	color: var(--color-dark);
 	word-break: break-word;
 }
 
 .itemInfo p {
 	margin: 0.5rem 0 0;
 	font-size: 0.9rem;
-	color: #666;
+	color: var(--color-gray-500);
 	display: -webkit-box;
 	-webkit-line-clamp: 2;
 	-webkit-box-orient: vertical;
@@ -72,8 +72,8 @@
 }
 
 .orderButton {
-	background: #ffd700;
-	color: #333;
+	background: var(--color-gold);
+	color: var(--color-dark);
 	border: none;
 	padding: 0.4rem 0.6rem;
 	border-radius: 4px;
@@ -85,12 +85,12 @@
 }
 
 .orderButton:hover:not(:disabled) {
-	background: #ffed4e;
+	background: var(--color-yellow);
 }
 
 .orderButton:disabled {
-	background: #e0e0e0;
-	color: #aaa;
+	background: var(--color-gray-300);
+	color: var(--color-gray-500);
 	cursor: not-allowed;
 }
 
@@ -102,8 +102,8 @@
 }
 
 .deleteButton {
-	background: #ff4d4f;
-	color: white;
+	background: var(--color-red);
+	color: var(--color-white);
 	border: none;
 	padding: 0.5rem 1rem;
 	border-radius: 4px;
@@ -113,7 +113,7 @@
 }
 
 .deleteButton:hover {
-	background: #d9363e;
+	background: var(--color-dark-red);
 }
 
 .formActions {
@@ -123,8 +123,8 @@
 }
 
 .cancelButton {
-	background: #f0f0f0;
-	border: 1px solid #ccc;
+	background: var(--color-gray-100);
+	border: 1px solid var(--color-gray-300);
 	padding: 0.75rem 1.5rem;
 	border-radius: 4px;
 	cursor: pointer;
@@ -132,12 +132,12 @@
 }
 
 .cancelButton:hover {
-	background: #e0e0e0;
+	background: var(--color-gray-200);
 }
 
 .submitButton {
-	background: #28a745;
-	color: white;
+	background: var(--color-dark-green);
+	color: var(--color-white);
 	border: none;
 	padding: 0.75rem 2rem;
 	border-radius: 4px;
@@ -147,10 +147,10 @@
 }
 
 .submitButton:hover:not(:disabled) {
-	background: #218838;
+	background: var(--color-green);
 }
 
 .submitButton:disabled {
-	background: #94d3a2;
+	background: var(--color-light-green);
 	cursor: not-allowed;
 }
