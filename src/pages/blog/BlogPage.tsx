@@ -1,5 +1,5 @@
-import styles from "./blogPage.module.css";
 import { JSX } from "react";
+import styles from "./blogPage.module.css";
 
 export default function BlogPage(): JSX.Element {
 	return (

@@ -1,34 +1,26 @@
-import { JSX, useEffect, useState } from "react";
-import Marquee from "../../components/marquee/Marquee";
+import { JSX } from "react";
+import { useNewsStore } from "@/store/newsStore";
 import HomeBanner from "@/components/homeBanner/HomeBanner";
-// import { fetchCreators, Creator } from "../../api/creator";
 import styles from "./magazinePage.module.css";
 
 export default function MagazinePage(): JSX.Element {
-	// const [creators, setCreators] = useState<Creator[]>([]);
-
-	// useEffect(() => {
-	// 	fetchCreators().then(setCreators);
-	// }, []);
+	const { news } = useNewsStore();
 
 	return (
 		<div className={styles.main}>
 			<div className={styles.container}>
 				<HomeBanner />
 
-				{/* <ul className={styles.list}>
-					{creators.length > 0 &&
-						creators.map((c) => (
-							<li className={styles.listItem} key={c.id}>
-								<strong>{c.name}</strong>
-								<p>{c.Bio}</p>
+				{news.length > 0 && (
+					<ul className={styles.newsList}>
+						{news.map((item) => (
+							<li key={item.id} className={styles.newsItem}>
+								<h3>{item.title}</h3>
+								<p>{item.text}</p>
 							</li>
 						))}
-				</ul> */}
-			</div>
-
-			<div className={styles.marquee}>
-				<Marquee speed="20s" />
+					</ul>
+				)}
 			</div>
 		</div>
 	);

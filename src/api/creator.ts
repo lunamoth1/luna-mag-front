@@ -1,13 +1,12 @@
 import axios from "axios";
+import { API_URL } from "@/constants";
 import type { Creator, EditCreator } from "@/types/api/creator";
-
-const API_URL = import.meta.env.VITE_STRAPI_URL;
 
 export async function fetchCreators(): Promise<Creator[]> {
 	try {
-		const response = await axios.get(`${API_URL}/api/creators?populate=*`);
+		const res = await axios.get(`${API_URL}/api/creators?populate=*`);
 
-		const data = response.data?.data || [];
+		const data = res.data?.data || [];
 
 		return data.map((item: Creator) => ({
 			id: item.id,
@@ -26,11 +25,11 @@ export async function fetchCreators(): Promise<Creator[]> {
 
 export async function addCreator(creatorData: EditCreator) {
 	try {
-		const payload = {
-			data: creatorData,
-		};
-		const response = await axios.post(`${API_URL}/api/creators`, payload);
-		return response.data?.data;
+		const payload = { data: creatorData };
+
+		const res = await axios.post(`${API_URL}/api/creators`, payload);
+
+		return res.data?.data;
 	} catch (error) {
 		console.error("Ошибка при добавлении креатора:", error);
 		throw error;
@@ -42,14 +41,14 @@ export async function updateCreator(
 	creatorData: EditCreator,
 ) {
 	try {
-		const payload = {
-			data: creatorData,
-		};
-		const response = await axios.put(
+		const payload = { data: creatorData };
+
+		const res = await axios.put(
 			`${API_URL}/api/creators/${documentId}`,
 			payload,
 		);
-		return response.data?.data;
+
+		return res.data?.data;
 	} catch (error) {
 		console.error("Ошибка при обновлении креатора:", error);
 		throw error;
@@ -58,10 +57,9 @@ export async function updateCreator(
 
 export async function deleteCreator(documentId: string) {
 	try {
-		const response = await axios.delete(
-			`${API_URL}/api/creators/${documentId}`,
-		);
-		return response.data?.data;
+		const res = await axios.delete(`${API_URL}/api/creators/${documentId}`);
+
+		return res.data?.data;
 	} catch (error) {
 		console.error("Ошибка при удалении креатора:", error);
 		throw error;

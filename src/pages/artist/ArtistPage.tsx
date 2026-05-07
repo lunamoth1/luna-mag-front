@@ -1,5 +1,6 @@
 import { useParams } from "react-router-dom";
 import { useCreatorsStore } from "@/store/creatorsStore";
+import { API_URL } from "@/constants";
 import styles from "./artistPage.module.css";
 
 export default function ArtistPage() {
@@ -11,8 +12,6 @@ export default function ArtistPage() {
 	if (!creator) {
 		return <div className={styles.notFound}>Author not found</div>;
 	}
-
-	const API_URL = import.meta.env.VITE_STRAPI_URL?.replace(/\/$/, "");
 
 	return (
 		<div className={styles.container}>

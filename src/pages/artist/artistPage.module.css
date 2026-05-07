@@ -29,7 +29,7 @@
 
 .notFound {
 	text-align: center;
-	color: #c00;
+	color: var(--color-red);
 	font-size: 1.3rem;
 	margin-top: 48px;
 }

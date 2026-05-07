@@ -1,7 +1,7 @@
 import { JSX } from "react";
-import styles from "./header.module.css";
-import headerImg from "../../assets/images/header.png";
 import logoImg from "../../assets/images/logo.png";
+import headerImg from "../../assets/images/header.png";
+import styles from "./header.module.css";
 
 export default function Header(): JSX.Element {
 	return (

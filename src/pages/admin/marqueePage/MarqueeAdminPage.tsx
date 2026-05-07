@@ -1,6 +1,6 @@
 import { JSX, useState, useEffect } from "react";
+import { fetchMarquee, updateMarquee } from "@/api/marquee";
 import AdminHeader from "@/components/adminHeader/AdminHeader";
-import { fetchMarquee, updateMarquee } from "../../../api/marquee";
 import styles from "./marqueeAdminPage.module.css";
 
 export default function MarqueeAdminPage(): JSX.Element {
@@ -10,7 +10,7 @@ export default function MarqueeAdminPage(): JSX.Element {
 
 	useEffect(() => {
 		fetchMarquee().then((data) => {
-			setTexts(data || []);
+			setTexts(data.map((item) => item.text) || []);
 			setIsLoading(false);
 		});
 	}, []);

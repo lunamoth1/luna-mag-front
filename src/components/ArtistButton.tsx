@@ -1,13 +1,12 @@
 import { JSX } from "react";
+import { useNavigate } from "react-router-dom";
+import { API_URL } from "@/constants";
 import styles from "./artistButton.module.css";
 import type { Creator } from "@/types/api/creator";
-import { useNavigate } from "react-router-dom";
 
 interface Props {
 	creator: Creator;
 }
-
-const API_URL = import.meta.env.VITE_STRAPI_URL?.replace(/\/$/, "");
 
 export default function ArtistButton({ creator }: Props): JSX.Element {
 	const photoUrl = creator.photo?.url

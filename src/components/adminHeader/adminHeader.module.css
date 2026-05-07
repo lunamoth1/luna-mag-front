@@ -1,133 +1,139 @@
 .header {
-  background-color: var(--surface-color, var(--color-white));
-  border-bottom: 1px solid var(--border-color, var(--color-gray-300));
-  margin-bottom: 20px;
-  width: 100%;
+	background-color: var(--color-white);
+	border-bottom: 1px solid var(--color-gray-300);
+	margin-bottom: 20px;
+	width: 100%;
 }
 
 .inner {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 10px;
-  max-width: 800px;
-  width: 100%;
-  margin: 0 auto;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding: 10px;
+	max-width: 800px;
+	width: 100%;
+	margin: 0 auto;
 }
 
 .left,
 .right {
-  flex: 1;
+	flex: 1;
 }
 
 .left {
-  display: flex;
-  justify-content: flex-start;
+	display: flex;
+	justify-content: flex-start;
 }
 
 .right {
-  display: flex;
-  justify-content: flex-end;
-  position: relative;
+	display: flex;
+	justify-content: flex-end;
+	position: relative;
 }
 
 .burger {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  width: 24px;
-  height: 18px;
-  background: transparent;
-  border: none;
-  cursor: pointer;
-  padding: 0;
-  z-index: 10;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	width: 24px;
+	height: 18px;
+	background: transparent;
+	border: none;
+	cursor: pointer;
+	padding: 0;
+	z-index: 10;
 }
 
 .line {
-  width: 100%;
-  height: 2px;
-  background-color: var(--color-black);
-  transition: all 0.3s ease;
+	width: 100%;
+	height: 2px;
+	background-color: var(--color-dark);
+	transition: all 0.3s ease;
 }
 
 .line.open:nth-child(1) {
-  transform: translateY(8px) rotate(45deg);
+	transform: translateY(8px) rotate(45deg);
 }
 
 .line.open:nth-child(2) {
-  opacity: 0;
+	opacity: 0;
 }
 
 .line.open:nth-child(3) {
-  transform: translateY(-8px) rotate(-45deg);
+	transform: translateY(-8px) rotate(-45deg);
 }
 
 .dropdown {
-  position: absolute;
-  top: 35px;
-  right: 0;
-  background-color: #ffffff;
-  border: 1px solid var(--color-gray-300);
-  border-radius: 8px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-  padding: 8px;
-  min-width: 120px;
-  z-index: 100;
-  animation: slideDown 0.2s ease-out;
+	position: absolute;
+	top: 35px;
+	right: 0;
+	background-color: var(--color-white);
+	border: 1px solid var(--color-gray-300);
+	border-radius: 8px;
+	box-shadow: 0 4px 12px var(--color-shadow);
+	padding: 8px;
+	min-width: 120px;
+	z-index: 100;
+	animation: slideDown 0.2s ease-out;
 }
 
 @keyframes slideDown {
-  from { opacity: 0; transform: translateY(-10px); }
-  to { opacity: 1; transform: translateY(0); }
+	from {
+		opacity: 0;
+		transform: translateY(-10px);
+	}
+	to {
+		opacity: 1;
+		transform: translateY(0);
+	}
 }
 
 .menuItems {
-  display: flex;
-  flex-direction: column;
-  width: 100%;
+	display: flex;
+	flex-direction: column;
+	width: 100%;
 }
 
 .menuItems button {
-  width: 100%;
-  padding: 10px 15px;
-  text-align: left;
-  background: transparent;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  font-size: 14px;
-  color: #ff3b30;
-  transition: background-color 0.2s;
+	width: 100%;
+	padding: 10px 15px;
+	text-align: left;
+	background: transparent;
+	border: none;
+	border-radius: 4px;
+	cursor: pointer;
+	font-size: 14px;
+	color: var(--color-red);
+	transition: background-color 0.2s;
 }
 
 .menuItems button:hover {
-  background-color: #fff1f0;
+	background-color: var(--color-white);
 }
 
 .title {
-  margin: 0;
-  font-size: 1.15rem;
-  height: 40px;
-  font-weight: 600;
-  color: var(--heading-color, var(--color-black));
-  white-space: nowrap;
-  align-items: center;
-  justify-content: center;
-  display: flex;
+	margin: 0;
+	font-size: 1.15rem;
+	height: 40px;
+	font-weight: 600;
+	color: var(--color-dark);
+	white-space: nowrap;
+	align-items: center;
+	justify-content: center;
+	display: flex;
 }
 
 .backButton {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 40px;
-  height: 40px;
-  font-size: 1.5rem;
-  color: var(--color-black);
-  transition: background-color 0.2s;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 40px;
+	height: 40px;
+	font-size: 1.5rem;
+	color: var(--color-dark);
+	transition: background-color 0.2s;
 }
 
 .backButton:hover {
-  background-color: var(--color-gray-200);
+	background-color: var(--color-gray-300);
 }

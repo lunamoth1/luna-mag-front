@@ -1,5 +1,5 @@
-import styles from "./eventsPage.module.css";
 import { JSX } from "react";
+import styles from "./eventsPage.module.css";
 
 export default function EventsPage(): JSX.Element {
 	return (
