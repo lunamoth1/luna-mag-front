@@ -4,9 +4,16 @@ import type { Creator, EditCreator } from "@/types/api/creator";
 
 export async function fetchCreators(): Promise<Creator[]> {
 	try {
-		const res = await axios.get(`${API_URL}/api/creators?populate=*`);
+		const res = await axios.get(
+			`${API_URL}/api/creators?populate=*&filters[hide][$eq]=false&pagination[pageSize]=1000`,
+		);
 
 		const data = res.data?.data || [];
+
+		// Логируем структуру для отладки
+		if (data.length > 0) {
+			console.log("Creator data sample:", JSON.stringify(data[0], null, 2));
+		}
 
 		return data.map((item: Creator) => ({
 			id: item.id,
