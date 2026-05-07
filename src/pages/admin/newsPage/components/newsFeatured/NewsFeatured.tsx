@@ -84,6 +84,7 @@ export default function NewsFeatured({
 						</button>
 					)}
 			</div>
+
 			{news.filter((n) => n.featured).length === 0 ? (
 				<div className={styles.emptyState}>
 					Нет избранных новостей. Отметьте новости как "Избранные" выше.
