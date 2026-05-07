@@ -75,7 +75,7 @@ select:disabled {
 }
 
 .submitButton {
-	background: var(--color-dark-green);
+	background: var(--color-green);
 	color: var(--color-white);
 	border: none;
 	padding: 0.75rem 2rem;
@@ -86,10 +86,10 @@ select:disabled {
 }
 
 .submitButton:hover:not(:disabled) {
-	background: var(--color-green);
+	background: var(--color-dark-green);
 }
 
 .submitButton:disabled {
-	background: var(--color-light-green);
+	background: var(--color-dark-green);
 	cursor: not-allowed;
 }
