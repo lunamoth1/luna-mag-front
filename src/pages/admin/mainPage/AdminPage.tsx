@@ -20,6 +20,7 @@ export default function AdminPage(): JSX.Element {
 					<AdminCard title="Бегущая строка" to="/admin/marquee" />
 					<AdminCard title="Креаторы" to="/admin/creators" />
 					<AdminCard title="Новости" to="/admin/news" />
+					<AdminCard title="Блог" to="/admin/blog" />
 				</div>
 			</div>
 		</>

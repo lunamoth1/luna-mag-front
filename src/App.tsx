@@ -15,15 +15,18 @@ import AdminPage from "./pages/admin/mainPage/AdminPage";
 import MarqueeAdminPage from "./pages/admin/marqueePage/MarqueeAdminPage";
 import CreatorsAdminPage from "./pages/admin/creatorsPage/CreatorsAdminPage";
 import NewsAdminPage from "./pages/admin/newsPage/NewsAdminPage";
+import BlogAdminPage from "./pages/admin/blogPage/BlogAdminPage";
 
 import SideNav from "./components/sideNav/SideNav";
 import Marquee from "./components/marquee/Marquee";
 import Header from "./components/header/Header";
 
 import { fetchNews } from "./api/news";
+import { fetchBlogs } from "./api/blog";
 import { fetchMarquee } from "./api/marquee";
 import { fetchCreators } from "./api/creator";
 import { useNewsStore } from "./store/newsStore";
+import { useBlogStore } from "./store/blogStore";
 import { useAdminStore } from "./store/adminStore";
 import { useMarqueeStore } from "./store/marqueeStore";
 import { useCreatorsStore } from "./store/creatorsStore";
@@ -38,12 +41,14 @@ function AppLayout() {
 	const setNews = useNewsStore((s) => s.setNews);
 	const setMarquee = useMarqueeStore((s) => s.setMarquee);
 	const setCreators = useCreatorsStore((s) => s.setCreators);
+	const setBlogs = useBlogStore((s) => s.setBlogs);
 
 	useEffect(() => {
 		fetchNews().then(setNews);
 		fetchMarquee().then(setMarquee);
 		fetchCreators().then(setCreators);
-	}, [setCreators, setMarquee, setNews]);
+		fetchBlogs().then(setBlogs);
+	}, [setCreators, setMarquee, setNews, setBlogs]);
 
 	const showPinLogin = isAdmin && !isAuthenticated;
 
@@ -68,11 +73,11 @@ function AppLayout() {
 						<Route path="/events" element={<EventsPage />} />
 						<Route path="/blog" element={<BlogPage />} />
 						<Route path="/contacts" element={<ContactsPage />} />
-
 						<Route path="/admin" element={<AdminPage />} />
 						<Route path="/admin/marquee" element={<MarqueeAdminPage />} />
 						<Route path="/admin/creators" element={<CreatorsAdminPage />} />
-						<Route path="/admin/news" element={<NewsAdminPage />} />
+						<Route path="/admin/news" element={<NewsAdminPage />} />{" "}
+						<Route path="/admin/blog" element={<BlogAdminPage />} />{" "}
 					</Routes>
 				</main>
 			</div>
