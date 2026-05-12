@@ -1,5 +1,6 @@
 import { JSX } from "react";
 import { useBlogStore } from "@/store/blogStore";
+import { getImageUrl } from "@/utils/imageUrl";
 import styles from "./blogPage.module.css";
 
 export default function BlogPage(): JSX.Element {
@@ -17,6 +18,28 @@ export default function BlogPage(): JSX.Element {
 						<div key={blog.documentId} className={styles.blogItem}>
 							<p className={styles.blogTitle}>{blog.title}</p>
 							<p className={styles.blogText}>{blog.text}</p>
+
+							{blog.images && blog.images.length > 0 && (
+								<div className={styles.imagesGallery}>
+									<div className={styles.imagesGrid}>
+										{blog.images.map((image) => (
+											<div key={image.id} className={styles.imageWrapper}>
+												<img
+													src={getImageUrl(image.url)}
+													alt={image.description}
+													className={styles.galleryImage}
+												/>
+												{image.description && (
+													<p className={styles.imageDescription}>
+														{image.description}
+													</p>
+												)}
+											</div>
+										))}
+									</div>
+								</div>
+							)}
+
 							<div className={styles.blogDate}>
 								{blog.createdAt && (
 									<span>

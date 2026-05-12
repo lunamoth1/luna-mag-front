@@ -15,6 +15,7 @@ export async function fetchBlogs(): Promise<BlogPost[]> {
 			documentId: item.documentId,
 			title: item.title,
 			text: item.text,
+			images: item.images || [],
 			createdAt: item.createdAt,
 			updatedAt: item.updatedAt,
 		}));

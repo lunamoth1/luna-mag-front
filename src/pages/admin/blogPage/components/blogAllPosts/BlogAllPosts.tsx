@@ -1,4 +1,5 @@
 import { JSX } from "react";
+import { getImageUrl } from "@/utils/imageUrl";
 import { BlogPost } from "@/types/api/blog";
 import styles from "./blogAllPosts.module.css";
 
@@ -21,16 +22,28 @@ export default function BlogAllPosts({
 			) : (
 				blogs.map((blog) => (
 					<div key={blog.documentId} className={styles.item}>
-						<div className={styles.itemInfo}>
-							<h3>{blog.title}</h3>
-							<p>{blog.text}</p>
-							<div
-								style={{
-									marginTop: "0.5rem",
-									fontSize: "0.85rem",
-									color: "#999",
-								}}
-							>
+						<div>
+							<h3 className={styles.itemTitle}>{blog.title}</h3>
+							<p className={styles.itemText}>{blog.text}</p>
+
+							{blog.images && blog.images.length > 0 && (
+								<div className={styles.imagesPreview}>
+									{blog.images.map((img) => (
+										<div key={img.id} className={styles.thumbnailWrapper}>
+											<img
+												src={getImageUrl(img.url)}
+												alt={img.description}
+												className={styles.thumbnail}
+											/>
+											<p className={styles.imageDescription}>
+												{img.description}
+											</p>
+										</div>
+									))}
+								</div>
+							)}
+
+							<div className={styles.itemDate}>
 								{blog.createdAt && (
 									<span>
 										{new Date(blog.createdAt).toLocaleDateString("ru-RU")}

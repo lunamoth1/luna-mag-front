@@ -9,7 +9,7 @@ import AdminHeader from "@/components/adminHeader/AdminHeader";
 import BlogMainBlock from "./components/blogMainBlock/BlogMainBlock";
 import BlogAllPosts from "./components/blogAllPosts/BlogAllPosts";
 import styles from "./blogAdminPage.module.css";
-import type { BlogPost } from "@/types/api/blog";
+import type { BlogPost, BlogImage } from "@/types/api/blog";
 
 export default function BlogAdminPage(): JSX.Element {
 	const [blogs, setBlogs] = useState<BlogPost[]>([]);
@@ -19,6 +19,7 @@ export default function BlogAdminPage(): JSX.Element {
 	const [editingDocId, setEditingDocId] = useState<string | null>(null);
 	const [title, setTitle] = useState("");
 	const [text, setText] = useState("");
+	const [uploadedImages, setUploadedImages] = useState<BlogImage[]>([]);
 
 	const loadBlogs = async () => {
 		setIsLoading(true);
@@ -40,6 +41,7 @@ export default function BlogAdminPage(): JSX.Element {
 		setEditingDocId(blogPost.documentId || null);
 		setTitle(blogPost.title || "");
 		setText(blogPost.text || "");
+		setUploadedImages(blogPost.images || []);
 		window.scrollTo({ top: 0, behavior: "smooth" });
 	};
 
@@ -72,6 +74,8 @@ export default function BlogAdminPage(): JSX.Element {
 					isSaving={isSaving}
 					setTitle={setTitle}
 					setText={setText}
+					uploadedImages={uploadedImages}
+					setUploadedImages={setUploadedImages}
 					loadBlogs={loadBlogs}
 					addBlogPost={addBlogPost}
 					updateBlogPost={updateBlogPost}
