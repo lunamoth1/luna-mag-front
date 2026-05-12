@@ -45,6 +45,132 @@ select:disabled {
 	font-size: 1rem;
 }
 
+.mediaSection {
+	background: var(--color-gray-50);
+	padding: 1rem;
+	border-radius: 8px;
+	border: 1px solid var(--color-gray-200);
+}
+
+.mediaSection h3 {
+	margin: 0 0 0.75rem;
+	font-size: 0.95rem;
+	color: var(--color-dark);
+}
+
+.urlInputGroup {
+	display: flex;
+	gap: 0.5rem;
+	margin-bottom: 0.75rem;
+}
+
+.urlInputGroup .input {
+	flex: 1;
+}
+
+.uploadButton {
+	background: var(--color-blue);
+	color: var(--color-white);
+	border: none;
+	padding: 0.75rem 1rem;
+	border-radius: 6px;
+	cursor: pointer;
+	font-weight: 500;
+	transition: background 0.2s;
+	white-space: nowrap;
+}
+
+.uploadButton:hover:not(:disabled) {
+	background: var(--color-dark-blue);
+}
+
+.uploadButton:disabled {
+	background: var(--color-gray-300);
+	cursor: not-allowed;
+}
+
+.previewContainer {
+	margin-top: 0.75rem;
+	border-radius: 4px;
+	max-width: 200px;
+	overflow: hidden;
+	background: var(--color-white);
+	border: 1px solid var(--color-gray-300);
+}
+
+.profilePreview {
+	width: 100%;
+	max-width: 200px;
+	height: auto;
+	display: block;
+	border-radius: 100%;
+	object-fit: cover;
+}
+
+.successText {
+	color: var(--color-green);
+	font-size: 0.9rem;
+	margin: 0.5rem 0 0;
+	font-weight: 500;
+}
+
+.multipleUrlsContainer {
+	display: flex;
+	flex-direction: column;
+	gap: 0.75rem;
+	margin-bottom: 0.75rem;
+}
+
+.removeButton {
+	background: var(--color-red);
+	color: var(--color-white);
+	border: none;
+	padding: 0.75rem 0.75rem;
+	border-radius: 6px;
+	cursor: pointer;
+	font-weight: bold;
+	transition: background 0.2s;
+	min-width: 40px;
+}
+
+.removeButton:hover:not(:disabled) {
+	background: var(--color-dark-red);
+}
+
+.removeButton:disabled {
+	background: var(--color-gray-300);
+	cursor: not-allowed;
+}
+
+.preview {
+	height: 100%;
+	width: min-content;
+	height: auto;
+	display: block;
+	object-fit: contain;
+}
+
+.addButton {
+	background: var(--color-green);
+	color: var(--color-white);
+	border: none;
+	padding: 0.75rem 1rem;
+	border-radius: 6px;
+	cursor: pointer;
+	font-weight: 500;
+	transition: background 0.2s;
+	width: 100%;
+}
+
+.addButton:hover:not(:disabled) {
+	background: var(--color-dark-green);
+}
+
+.addButton:disabled {
+	background: var(--color-gray-300);
+	cursor: not-allowed;
+}
+
 .formActions {
 	display: flex;
 	gap: 1rem;
@@ -60,6 +186,16 @@ select:disabled {
 	transition: background 0.2s;
 }
 
+.cancelButton:hover:not(:disabled) {
+	background: var(--color-gray-200);
+}
+
+.cancelButton:disabled {
+	background: var(--color-gray-100);
+	cursor: not-allowed;
+	opacity: 0.6;
+}
+
 .submitButton {
 	background: var(--color-dark-green);
 	color: var(--color-white);
@@ -69,6 +205,10 @@ select:disabled {
 	cursor: pointer;
 	font-weight: bold;
 	flex: 1;
+}
+
+.submitButton:hover:not(:disabled) {
+	background: var(--color-green);
 }
 
 .submitButton:disabled {

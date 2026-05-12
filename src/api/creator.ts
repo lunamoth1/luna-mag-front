@@ -2,6 +2,48 @@ import axios from "axios";
 import { API_URL } from "@/constants";
 import type { Creator, EditCreator } from "@/types/api/creator";
 
+/**
+ * Загружает файл с Cloudinary в Strapi через кастомный эндпоинт
+ */
+export async function uploadImageToStrapi(
+	cloudinaryUrl: string,
+	fileName?: string,
+): Promise<number> {
+	try {
+		const uploadRes = await axios.post(`${API_URL}/api/upload-image`, {
+			imageUrl: cloudinaryUrl,
+			fileName: fileName || "image.jpg",
+		});
+
+		if (!uploadRes.data?.data?.id) {
+			throw new Error("Ошибка загрузки: нет ID в ответе");
+		}
+
+		return uploadRes.data.data.id;
+	} catch (error) {
+		console.error("Ошибка при загрузке изображения в Strapi:", error);
+		throw error;
+	}
+}
+
+/**
+ * Загружает множество файлов с Cloudinary в Strapi
+ */
+export async function uploadMultipleImagesToStrapi(
+	cloudinaryUrls: string[],
+): Promise<number[]> {
+	try {
+		const uploadPromises = cloudinaryUrls.map((url, index) =>
+			uploadImageToStrapi(url, `work-${index}.jpg`),
+		);
+
+		return await Promise.all(uploadPromises);
+	} catch (error) {
+		console.error("Ошибка при загрузке множества изображений:", error);
+		throw error;
+	}
+}
+
 export async function fetchCreators(): Promise<Creator[]> {
 	try {
 		const res = await axios.get(

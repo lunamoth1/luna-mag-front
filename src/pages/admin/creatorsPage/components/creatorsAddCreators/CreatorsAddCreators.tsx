@@ -1,5 +1,6 @@
 import { JSX } from "react";
 import { deleteCreator } from "@/api/creator";
+import { getImageUrl } from "@/utils/imageUrl";
 import { Creator } from "@/types/api/creator";
 import styles from "./creatorsAddCreators.module.css";
 
@@ -22,6 +23,24 @@ export default function CreatorsAddCreators({
 	setHide,
 	loadCreators,
 }: CreatorsAddCreatorsProps): JSX.Element {
+	const getPhotoUrl = (photo: any): string | null => {
+		if (!photo) return null;
+		if (typeof photo === "string") return getImageUrl(photo);
+		if (photo.url) return getImageUrl(photo.url);
+		return null;
+	};
+
+	const getWorksPhotosUrls = (worksPhotos: any[]): string[] => {
+		if (!Array.isArray(worksPhotos)) return [];
+		return worksPhotos
+			.map((item) => {
+				if (typeof item === "string") return getImageUrl(item);
+				if (item.url) return getImageUrl(item.url);
+				return null;
+			})
+			.filter(Boolean) as string[];
+	};
+
 	const handleEdit = (creator: Creator) => {
 		setEditingDocId(creator.documentId);
 		setInstagram(creator.instagram || "");
@@ -67,37 +86,49 @@ export default function CreatorsAddCreators({
 								<b>Style:</b> {creator.style || "—"}
 							</p>
 
-							<p>
-								<b>Фото:</b>{" "}
-								{creator.photo ? (
-									<a
-										href={creator.photo}
-										target="_blank"
-										rel="noopener noreferrer"
-									>
-										ссылка
-									</a>
-								) : (
-									"—"
+							<div className={styles.photoSection}>
+								<p>
+									<b>Фото:</b>{" "}
+								</p>
+								{getPhotoUrl(creator.photo) && (
+									<div className={styles.photoPreview}>
+										<img
+											src={getPhotoUrl(creator.photo)!}
+											alt="Фото профиля"
+											onError={(e) => {
+												(e.target as HTMLImageElement).style.display = "none";
+											}}
+										/>
+									</div>
 								)}
-							</p>
+							</div>
 
-							<p>
-								<b>Работы:</b>{" "}
-								{creator.worksPhotos && creator.worksPhotos.length > 0
-									? creator.worksPhotos.map((url, i) => (
-											<a
-												key={i}
-												href={url}
-												target="_blank"
-												rel="noopener noreferrer"
-												style={{ marginRight: 4 }}
-											>
-												[{i + 1}]
-											</a>
-										))
-									: "—"}
-							</p>
+							<div>
+								<p>
+									<b>Работы:</b>{" "}
+								</p>
+								{getWorksPhotosUrls(creator.worksPhotos as any[]).length >
+									0 && (
+									<>
+										<div className={styles.worksPreview}>
+											{getWorksPhotosUrls(creator.worksPhotos as any[]).map(
+												(url, i) => (
+													<div key={i} className={styles.worksThumbnail}>
+														<img
+															src={url}
+															alt={`Работа ${i + 1}`}
+															onError={(e) => {
+																(e.target as HTMLImageElement).style.display =
+																	"none";
+															}}
+														/>
+													</div>
+												),
+											)}
+										</div>
+									</>
+								)}
+							</div>
 							<p>
 								<b>Скрыт:</b> {creator.hide ? "Да" : "Нет"}
 							</p>

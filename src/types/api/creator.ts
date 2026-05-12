@@ -34,8 +34,8 @@ export interface Creator {
 
 export interface EditCreator {
 	instagram: string;
-	// photo: string;
-	// worksPhotos: string[];
+	photo?: number; // ID файла в Strapi
+	worksPhotos?: number[]; // Массив ID файлов в Strapi
 	based: string;
 	style: string;
 	hide: boolean;
