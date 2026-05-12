@@ -1,0 +1,23 @@
+.search {
+	max-width: 400px;
+	padding: 4px 4px;
+	background: var(--color-gray-700);
+	flex-grow: 1;
+	display: flex;
+	align-items: center;
+}
+
+.searchLogo {
+	width: 30px;
+	height: 30px;
+}
+
+.searchInput {
+	font-size: 16px;
+	background: transparent;
+	padding: 5px 10px;
+	border: none;
+	color: var(--color-white);
+	height: 100%;
+	width: 100%;
+}
