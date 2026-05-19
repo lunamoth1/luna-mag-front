@@ -52,6 +52,10 @@ function AppLayout() {
 		fetchBlogs().then(setBlogs);
 	}, [setCreators, setMarquee, setNews, setBlogs]);
 
+	useEffect(() => {
+		window.scrollTo(0, 0);
+	}, [location.pathname]);
+
 	const showPinLogin = isAdmin && !isAuthenticated;
 
 	if (showPinLogin) {
