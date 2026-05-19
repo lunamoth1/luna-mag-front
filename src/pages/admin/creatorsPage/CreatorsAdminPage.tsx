@@ -2,7 +2,7 @@ import { JSX, useState, useEffect } from "react";
 import { fetchCreators } from "@/api/creator";
 import AdminHeader from "@/components/adminHeader/AdminHeader";
 import CreatorsMainBlock from "./components/creatorsMainBlock/CreatorsMainBlock";
-import CreatorsAddCreators from "./components/creatorsAddCreators/CreatorsAddCreators";
+import CreatorsList from "./components/creatorsList/CreatorsList";
 import styles from "./creatorsAdminPage.module.css";
 import type { Creator } from "@/types/api/creator";
 
@@ -16,6 +16,8 @@ export default function CreatorsAdminPage(): JSX.Element {
 	const [based, setBased] = useState("");
 	const [style, setStyle] = useState("");
 	const [hide, setHide] = useState(false);
+	const [photo, setPhoto] = useState<any>(null);
+	const [worksPhotos, setWorksPhotos] = useState<any[]>([]);
 
 	const loadCreators = async () => {
 		setIsLoading(true);
@@ -29,7 +31,7 @@ export default function CreatorsAdminPage(): JSX.Element {
 	}, []);
 
 	if (isLoading) {
-		return <div className={styles.container}>Загрузка...</div>;
+		return <div className={styles.loading}>Загрузка...</div>;
 	}
 
 	return (
@@ -43,21 +45,27 @@ export default function CreatorsAdminPage(): JSX.Element {
 					based={based}
 					style={style}
 					hide={hide}
+					photo={photo}
+					worksPhotos={worksPhotos}
 					setInstagram={setInstagram}
 					setBased={setBased}
 					setStyle={setStyle}
 					setHide={setHide}
+					setPhoto={setPhoto}
+					setWorksPhotos={setWorksPhotos}
 					loadCreators={loadCreators}
 					setEditingDocId={setEditingDocId}
 				/>
 
-				<CreatorsAddCreators
+				<CreatorsList
 					creators={creators}
 					setEditingDocId={setEditingDocId}
 					setInstagram={setInstagram}
 					setBased={setBased}
 					setStyle={setStyle}
 					setHide={setHide}
+					setPhoto={setPhoto}
+					setWorksPhotos={setWorksPhotos}
 					loadCreators={loadCreators}
 				/>
 			</div>

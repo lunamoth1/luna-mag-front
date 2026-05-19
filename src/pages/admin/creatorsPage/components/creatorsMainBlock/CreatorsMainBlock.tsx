@@ -5,6 +5,7 @@ import {
 	uploadImageToStrapi,
 	uploadMultipleImagesToStrapi,
 } from "@/api/creator";
+import { getImageUrl } from "@/utils/imageUrl";
 import styles from "./creatorsMainBlock.module.css";
 
 interface CreatorsMainBlockProps {
@@ -13,10 +14,14 @@ interface CreatorsMainBlockProps {
 	based: string;
 	style: string;
 	hide: boolean;
+	photo: any;
+	worksPhotos: any[];
 	setInstagram: (value: string) => void;
 	setBased: (value: string) => void;
 	setStyle: (value: string) => void;
 	setHide: (value: boolean) => void;
+	setPhoto: (value: any) => void;
+	setWorksPhotos: (value: any[]) => void;
 	loadCreators: () => void;
 	setEditingDocId: (value: string | null) => void;
 }
@@ -27,10 +32,14 @@ export default function CreatorsMainBlock({
 	based,
 	style,
 	hide,
+	photo,
+	worksPhotos,
 	setInstagram,
 	setBased,
 	setStyle,
 	setHide,
+	setPhoto,
+	setWorksPhotos,
 	loadCreators,
 	setEditingDocId,
 }: CreatorsMainBlockProps): JSX.Element {
@@ -42,6 +51,24 @@ export default function CreatorsMainBlock({
 	const [worksPhotosUrls, setWorksPhotosUrls] = useState<string[]>([]);
 	const [worksPhotosIds, setWorksPhotosIds] = useState<number[]>([]);
 	const [worksPhotosLoading, setWorksPhotosLoading] = useState(false);
+
+	const getPhotoUrl = (photoData: any): string | null => {
+		if (!photoData) return null;
+		if (typeof photoData === "string") return getImageUrl(photoData);
+		if (photoData.url) return getImageUrl(photoData.url);
+		return null;
+	};
+
+	const getWorksPhotosUrls = (worksPhotosData: any[]): string[] => {
+		if (!Array.isArray(worksPhotosData)) return [];
+		return worksPhotosData
+			.map((item) => {
+				if (typeof item === "string") return getImageUrl(item);
+				if (item.url) return getImageUrl(item.url);
+				return null;
+			})
+			.filter(Boolean) as string[];
+	};
 
 	const handleUploadPhoto = async () => {
 		if (!photoUrl.trim()) return alert("Введите URL фото");
@@ -120,8 +147,10 @@ export default function CreatorsMainBlock({
 		setInstagram("");
 		setPhotoUrl("");
 		setPhotoId(null);
+		setPhoto(null);
 		setWorksPhotosUrls([]);
 		setWorksPhotosIds([]);
+		setWorksPhotos([]);
 		setBased("");
 		setStyle("");
 		setHide(false);
@@ -130,6 +159,7 @@ export default function CreatorsMainBlock({
 	return (
 		<section className={styles.formSection}>
 			<h2>{editingDocId ? "Редактировать" : "Добавить нового"}</h2>
+
 			<form className={styles.form} onSubmit={handleSubmit}>
 				<div className={styles.inputField}>
 					<label>Instagram:</label>
@@ -175,6 +205,18 @@ export default function CreatorsMainBlock({
 							/>
 						</div>
 					)}
+					{!photoUrl && editingDocId && getPhotoUrl(photo) && (
+						<div className={styles.previewContainer}>
+							<img
+								src={getPhotoUrl(photo)!}
+								alt="Текущее фото"
+								className={styles.profilePreview}
+								onError={(e) => {
+									(e.target as HTMLImageElement).style.display = "none";
+								}}
+							/>
+						</div>
+					)}
 					{photoId && (
 						<p className={styles.successText}>
 							✓ Фото загружено (ID: {photoId})
@@ -184,6 +226,22 @@ export default function CreatorsMainBlock({
 
 				<div className={styles.mediaSection}>
 					<h3>Фото работ (Cloudinary URLs)</h3>
+					{editingDocId &&
+						getWorksPhotosUrls(worksPhotos).length > 0 &&
+						worksPhotosUrls.length === 0 && (
+							<div className={styles.worksPreview}>
+								{getWorksPhotosUrls(worksPhotos).map((url, i) => (
+									<img
+										key={i}
+										src={url}
+										alt={`Работа ${i + 1}`}
+										onError={(e) => {
+											(e.target as HTMLImageElement).style.display = "none";
+										}}
+									/>
+								))}
+							</div>
+						)}
 					<div className={styles.multipleUrlsContainer}>
 						{worksPhotosUrls.map((url, index) => (
 							<div key={index}>
@@ -227,6 +285,9 @@ export default function CreatorsMainBlock({
 								)}
 							</div>
 						))}
+					</div>
+
+					<div className={styles.buttonsRow}>
 						<button
 							type="button"
 							onClick={() => setWorksPhotosUrls([...worksPhotosUrls, ""])}
@@ -235,19 +296,20 @@ export default function CreatorsMainBlock({
 						>
 							+ Добавить URL
 						</button>
+						<button
+							type="button"
+							onClick={handleUploadWorksPhotos}
+							className={styles.uploadButton}
+							disabled={
+								worksPhotosLoading ||
+								isSaving ||
+								worksPhotosUrls.filter((u) => u.trim()).length === 0
+							}
+						>
+							{worksPhotosLoading ? "Загрузка..." : "Загрузить все"}
+						</button>
 					</div>
-					<button
-						type="button"
-						onClick={handleUploadWorksPhotos}
-						className={styles.uploadButton}
-						disabled={
-							worksPhotosLoading ||
-							isSaving ||
-							worksPhotosUrls.filter((u) => u.trim()).length === 0
-						}
-					>
-						{worksPhotosLoading ? "Загрузка..." : "Загрузить все"}
-					</button>
+
 					{worksPhotosIds.length > 0 && (
 						<p className={styles.successText}>
 							✓ Загружено {worksPhotosIds.length} фото
@@ -278,11 +340,12 @@ export default function CreatorsMainBlock({
 				</div>
 
 				<div className={styles.inputField}>
-					<label>
+					<label className={styles.checkboxLabel}>
 						<input
 							type="checkbox"
 							checked={hide}
 							onChange={(e) => setHide(e.target.checked)}
+							className={styles.checkbox}
 							disabled={isSaving}
 						/>
 						Скрыть автора

@@ -1,6 +1,7 @@
 import { JSX } from "react";
 import { useNewsStore } from "@/store/newsStore";
 import HomeBanner from "@/components/homeBanner/HomeBanner";
+import NewsElement from "@/components/newsElement/NewsElement";
 import styles from "./magazinePage.module.css";
 
 export default function MagazinePage(): JSX.Element {
@@ -14,10 +15,7 @@ export default function MagazinePage(): JSX.Element {
 				{news.length > 0 && (
 					<ul className={styles.newsList}>
 						{news.map((item) => (
-							<li key={item.id} className={styles.newsItem}>
-								<h3>{item.title}</h3>
-								<p>{item.text}</p>
-							</li>
+							<NewsElement key={item.id} news={item} />
 						))}
 					</ul>
 				)}

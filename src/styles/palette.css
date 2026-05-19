@@ -8,6 +8,7 @@
 	--color-gray-600: #757575;
 	--color-gray-700: #5b5a5a;
 	--color-gray-800: #424242;
+	--color-gray-900: #212121;
 	--color-dark: #171515;
 	--color-black: #000000;
 
@@ -28,9 +29,11 @@
 
 	--color-shadow: rgba(0, 0, 0, 0.1);
 
-	--font-primary: "MS Sans Serif", sans-serif;
+	--font-ms-sans-serif: "MS Sans Serif", sans-serif;
+	--font-padiuk-regular: "Padiuk Regular", sans-serif;
+	--font-padiuk-bold: "Padiuk Bold", sans-serif;
 
 	/* 
   --color-gray-700: #616161;
-  --color-gray-900: #212121;  */
+	*/
 }

@@ -59,7 +59,7 @@ export default function BlogAdminPage(): JSX.Element {
 	};
 
 	if (isLoading) {
-		return <div className={styles.container}>Загрузка...</div>;
+		return <div className={styles.loading}>Загрузка...</div>;
 	}
 
 	return (

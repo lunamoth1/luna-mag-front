@@ -95,11 +95,12 @@ export default function NewsMainBlock({
 					/>
 				</div>
 				<div className={styles.inputField}>
-					<label>
+					<label className={styles.checkboxLabel}>
 						<input
 							type="checkbox"
 							checked={featured}
 							onChange={(e) => setFeatured(e.target.checked)}
+							className={styles.checkbox}
 						/>
 						Избранная новость
 					</label>

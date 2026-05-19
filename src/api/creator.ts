@@ -47,7 +47,7 @@ export async function uploadMultipleImagesToStrapi(
 export async function fetchCreators(): Promise<Creator[]> {
 	try {
 		const res = await axios.get(
-			`${API_URL}/api/creators?populate=*&filters[hide][$eq]=false&pagination[pageSize]=1000`,
+			`${API_URL}/api/creators?populate=*&pagination[pageSize]=1000`,
 		);
 
 		const data = res.data?.data || [];
@@ -60,6 +60,7 @@ export async function fetchCreators(): Promise<Creator[]> {
 			worksPhotos: item.worksPhotos,
 			based: item.based,
 			style: item.style,
+			hide: item.hide,
 		}));
 	} catch (error) {
 		console.error("Ошибка при получении списка креаторов:", error);

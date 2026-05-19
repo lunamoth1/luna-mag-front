@@ -45,6 +45,19 @@ select:disabled {
 	font-size: 1rem;
 }
 
+.checkboxLabel {
+	display: flex;
+	align-items: center;
+	gap: 0.5rem;
+	font-weight: bold;
+	font-size: 0.9rem;
+}
+
+.checkbox {
+	width: 20px;
+	height: 20px;
+}
+
 .textarea {
 	padding: 0.75rem;
 	border: 1px solid var(--color-gray-300);

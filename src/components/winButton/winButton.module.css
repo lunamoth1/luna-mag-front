@@ -1,6 +1,6 @@
 .winButton {
 	background-color: var(--color-gray-400);
-	font-family: var(--font-primary);
+	font-family: var(--font-ms-sans-serif);
 	font-size: 14px;
 	font-weight: bold;
 	color: var(--color-dark);

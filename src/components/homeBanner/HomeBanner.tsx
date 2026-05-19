@@ -1,4 +1,5 @@
 import { JSX } from "react";
+import { Link } from "react-router-dom";
 import { useNewsStore } from "@/store/newsStore";
 import styles from "./homeBanner.module.css";
 
@@ -12,9 +13,13 @@ export default function HomeBanner(): JSX.Element {
 
 			<div>
 				{featuredNews.map((item) => (
-					<p key={item.id} className={styles.newsItem}>
+					<Link
+						key={item.id}
+						to={`/news/${encodeURIComponent(item.title)}`}
+						className={styles.newsItem}
+					>
 						{item.title}
-					</p>
+					</Link>
 				))}
 			</div>
 		</div>

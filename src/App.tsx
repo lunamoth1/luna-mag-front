@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
 
 import MagazinePage from "./pages/magazine/MagazinePage";
+import NewsDetailPage from "./pages/news/NewsDetailPage";
 import ArtistsPage from "./pages/artists/ArtistsPage";
 import ArtistPage from "./pages/artist/ArtistPage";
 import GalleriesPage from "./pages/galleries/GalleriesPage";
@@ -66,6 +67,7 @@ function AppLayout() {
 				<main className={styles.navigationContent}>
 					<Routes>
 						<Route path="/" element={<MagazinePage />} />
+						<Route path="/news/:title" element={<NewsDetailPage />} />
 						<Route path="/artists" element={<ArtistsPage />} />
 						<Route path="/artist/:instagram" element={<ArtistPage />} />
 						<Route path="/galleries" element={<GalleriesPage />} />

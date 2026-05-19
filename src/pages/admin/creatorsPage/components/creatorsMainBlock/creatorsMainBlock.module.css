@@ -58,6 +58,19 @@ select:disabled {
 	color: var(--color-dark);
 }
 
+.worksPreview {
+	display: flex;
+	flex-direction: row;
+	width: 100%;
+	gap: 0.5rem;
+	flex-wrap: wrap;
+	margin-bottom: 0.75rem;
+}
+
+.worksPreview img {
+	object-fit: cover;
+}
+
 .urlInputGroup {
 	display: flex;
 	gap: 0.5rem;
@@ -92,17 +105,16 @@ select:disabled {
 .previewContainer {
 	margin-top: 0.75rem;
 	border-radius: 4px;
-	max-width: 200px;
+	width: 200px;
+	height: 200px;
 	overflow: hidden;
 	background: var(--color-white);
 	border: 1px solid var(--color-gray-300);
 }
 
 .profilePreview {
-	width: 100%;
-	max-width: 200px;
-	height: auto;
-	display: block;
+	width: 200px;
+	height: 200px;
 	border-radius: 100%;
 	object-fit: cover;
 }
@@ -150,6 +162,11 @@ select:disabled {
 	object-fit: contain;
 }
 
+.buttonsRow {
+	display: flex;
+	gap: 0.5rem;
+}
+
 .addButton {
 	background: var(--color-green);
 	color: var(--color-white);
@@ -159,7 +176,7 @@ select:disabled {
 	cursor: pointer;
 	font-weight: 500;
 	transition: background 0.2s;
-	width: 100%;
+	flex-grow: 1;
 }
 
 .addButton:hover:not(:disabled) {
@@ -169,6 +186,19 @@ select:disabled {
 .addButton:disabled {
 	background: var(--color-gray-300);
 	cursor: not-allowed;
+}
+
+.checkboxLabel {
+	display: flex;
+	align-items: center;
+	gap: 0.5rem;
+	font-weight: bold;
+	font-size: 0.9rem;
+}
+
+.checkbox {
+	width: 20px;
+	height: 20px;
 }
 
 .formActions {

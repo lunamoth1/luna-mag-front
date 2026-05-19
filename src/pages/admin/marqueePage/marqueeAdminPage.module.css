@@ -5,6 +5,12 @@
 	margin: 0 auto;
 }
 
+.loading {
+	font-size: 1.5rem;
+	text-align: center;
+	margin-top: 2rem;
+}
+
 .formContainer {
 	display: flex;
 	flex-direction: column;

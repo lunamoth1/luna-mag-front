@@ -2,27 +2,31 @@ import { JSX } from "react";
 import { deleteCreator } from "@/api/creator";
 import { getImageUrl } from "@/utils/imageUrl";
 import { Creator } from "@/types/api/creator";
-import styles from "./creatorsAddCreators.module.css";
+import styles from "./creatorsList.module.css";
 
-interface CreatorsAddCreatorsProps {
+interface CreatorsListProps {
 	creators: Creator[];
 	setEditingDocId: (value: string | null) => void;
 	setInstagram: (value: string) => void;
 	setBased: (value: string) => void;
 	setStyle: (value: string) => void;
 	setHide: (value: boolean) => void;
+	setPhoto: (value: any) => void;
+	setWorksPhotos: (value: any[]) => void;
 	loadCreators: () => void;
 }
 
-export default function CreatorsAddCreators({
+export default function CreatorsList({
 	creators,
 	setEditingDocId,
 	setInstagram,
 	setBased,
 	setStyle,
 	setHide,
+	setPhoto,
+	setWorksPhotos,
 	loadCreators,
-}: CreatorsAddCreatorsProps): JSX.Element {
+}: CreatorsListProps): JSX.Element {
 	const getPhotoUrl = (photo: any): string | null => {
 		if (!photo) return null;
 		if (typeof photo === "string") return getImageUrl(photo);
@@ -44,8 +48,8 @@ export default function CreatorsAddCreators({
 	const handleEdit = (creator: Creator) => {
 		setEditingDocId(creator.documentId);
 		setInstagram(creator.instagram || "");
-		// setPhoto(creator.photo || "");
-		// setWorksPhotos(creator.worksPhotos || []);
+		setPhoto(creator.photo || null);
+		setWorksPhotos(creator.worksPhotos || []);
 		setBased(creator.based || "");
 		setStyle(creator.style || "");
 		setHide(!!creator.hide);

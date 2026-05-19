@@ -50,7 +50,6 @@
 
 .photoPreview {
 	margin-top: 0.75rem;
-	max-width: 100px;
 	border-radius: 100%;
 	overflow: hidden;
 	background: var(--color-white);
@@ -61,11 +60,11 @@
 	height: 100px;
 	object-fit: cover;
 	display: block;
-	border-radius: 6px;
 }
 
 .worksPreview {
 	display: flex;
+	width: fit-content;
 	flex-wrap: wrap;
 	gap: 0.75rem;
 	margin-top: 0.75rem;
@@ -77,7 +76,6 @@
 
 .worksThumbnail {
 	height: 120px;
-	border-radius: 6px;
 	background: var(--color-white);
 }
 

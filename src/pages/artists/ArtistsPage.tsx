@@ -1,6 +1,6 @@
 import { JSX, useState } from "react";
 import { useCreatorsStore } from "@/store/creatorsStore";
-import ArtistButton from "@/components/ArtistButton";
+import ArtistButton from "@/components/artistButton/ArtistButton";
 import SearchBar from "@/components/searchBar/SearchBar";
 import FilterDropdown from "@/components/filterDropdown/FilterDropdown";
 import styles from "./artistsPage.module.css";
