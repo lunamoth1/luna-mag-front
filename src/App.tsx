@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
+import { Analytics } from "@vercel/analytics/react";
 
 import MagazinePage from "./pages/magazine/MagazinePage";
 import NewsDetailPage from "./pages/news/NewsDetailPage";
@@ -96,6 +97,7 @@ function AppLayout() {
 export default function App() {
 	return (
 		<BrowserRouter>
+			<Analytics />
 			<AppLayout />
 		</BrowserRouter>
 	);
