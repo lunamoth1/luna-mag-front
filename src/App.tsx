@@ -18,6 +18,7 @@ import MarqueeAdminPage from "./pages/admin/marqueePage/MarqueeAdminPage";
 import CreatorsAdminPage from "./pages/admin/creatorsPage/CreatorsAdminPage";
 import NewsAdminPage from "./pages/admin/newsPage/NewsAdminPage";
 import BlogAdminPage from "./pages/admin/blogPage/BlogAdminPage";
+import PartnersAdminPage from "./pages/admin/partnersPage/PartnersAdminPage";
 
 import SideNav from "./components/sideNav/SideNav";
 import Marquee from "./components/marquee/Marquee";
@@ -27,11 +28,13 @@ import { fetchNews } from "./api/news";
 import { fetchBlogs } from "./api/blog";
 import { fetchMarquee } from "./api/marquee";
 import { fetchCreators } from "./api/creator";
+import { fetchPartners } from "./api/partner";
 import { useNewsStore } from "./store/newsStore";
 import { useBlogStore } from "./store/blogStore";
 import { useAdminStore } from "./store/adminStore";
 import { useMarqueeStore } from "./store/marqueeStore";
 import { useCreatorsStore } from "./store/creatorsStore";
+import { usePartnerStore } from "./store/partnerStore";
 
 import styles from "./styles/app.module.css";
 
@@ -44,13 +47,15 @@ function AppLayout() {
 	const setMarquee = useMarqueeStore((s) => s.setMarquee);
 	const setCreators = useCreatorsStore((s) => s.setCreators);
 	const setBlogs = useBlogStore((s) => s.setBlogs);
+	const setPartners = usePartnerStore((s) => s.setPartners);
 
 	useEffect(() => {
 		fetchNews().then(setNews);
 		fetchMarquee().then(setMarquee);
 		fetchCreators().then(setCreators);
 		fetchBlogs().then(setBlogs);
-	}, [setCreators, setMarquee, setNews, setBlogs]);
+		fetchPartners().then(setPartners);
+	}, [setCreators, setMarquee, setNews, setBlogs, setPartners]);
 
 	useEffect(() => {
 		window.scrollTo(0, 0);
@@ -84,8 +89,7 @@ function AppLayout() {
 						<Route path="/admin/marquee" element={<MarqueeAdminPage />} />
 						<Route path="/admin/creators" element={<CreatorsAdminPage />} />
 						<Route path="/admin/news" element={<NewsAdminPage />} />{" "}
-						<Route path="/admin/blog" element={<BlogAdminPage />} />{" "}
-					</Routes>
+						<Route path="/admin/blog" element={<BlogAdminPage />} />{" "}					<Route path="/admin/partners" element={<PartnersAdminPage />} />					</Routes>
 				</main>
 			</div>
 
