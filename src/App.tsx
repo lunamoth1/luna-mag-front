@@ -3,7 +3,7 @@ import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
 import { Analytics } from "@vercel/analytics/react";
 
 import MagazinePage from "./pages/magazine/MagazinePage";
-import NewsDetailPage from "./pages/news/NewsDetailPage";
+import NewsDetailPage from "./pages/newsDetail/NewsDetailPage";
 import ArtistsPage from "./pages/artists/ArtistsPage";
 import ArtistPage from "./pages/artist/ArtistPage";
 import GalleriesPage from "./pages/galleries/GalleriesPage";
@@ -37,6 +37,7 @@ import { useCreatorsStore } from "./store/creatorsStore";
 import { usePartnerStore } from "./store/partnerStore";
 
 import styles from "./styles/app.module.css";
+import NewsPage from "./pages/news/NewsPage";
 
 function AppLayout() {
 	const location = useLocation();
@@ -78,6 +79,7 @@ function AppLayout() {
 					<Routes>
 						<Route path="/" element={<MagazinePage />} />
 						<Route path="/news/:title" element={<NewsDetailPage />} />
+						<Route path="/news" element={<NewsPage />} />
 						<Route path="/artists" element={<ArtistsPage />} />
 						<Route path="/artist/:instagram" element={<ArtistPage />} />
 						<Route path="/galleries" element={<GalleriesPage />} />
@@ -88,8 +90,10 @@ function AppLayout() {
 						<Route path="/admin" element={<AdminPage />} />
 						<Route path="/admin/marquee" element={<MarqueeAdminPage />} />
 						<Route path="/admin/creators" element={<CreatorsAdminPage />} />
-						<Route path="/admin/news" element={<NewsAdminPage />} />{" "}
-						<Route path="/admin/blog" element={<BlogAdminPage />} />{" "}					<Route path="/admin/partners" element={<PartnersAdminPage />} />					</Routes>
+						<Route path="/admin/news" element={<NewsAdminPage />} />
+						<Route path="/admin/blog" element={<BlogAdminPage />} />
+						<Route path="/admin/partners" element={<PartnersAdminPage />} />
+					</Routes>
 				</main>
 			</div>
 

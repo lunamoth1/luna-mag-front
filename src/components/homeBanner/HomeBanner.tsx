@@ -8,7 +8,7 @@ export default function HomeBanner(): JSX.Element {
 	const featuredNews = news.filter((item) => item.featured);
 
 	return (
-		<div className={styles.container}>
+		<Link to={"/news"} className={styles.container}>
 			<p className={styles.newsText}>news</p>
 
 			<div>
@@ -22,6 +22,6 @@ export default function HomeBanner(): JSX.Element {
 					</Link>
 				))}
 			</div>
-		</div>
+		</Link>
 	);
 }

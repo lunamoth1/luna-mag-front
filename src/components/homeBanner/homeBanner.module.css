@@ -8,6 +8,15 @@
 	gap: 10%;
 	margin-right: 20px;
 	padding: 0 10px;
+	transition: background-color 0.2s;
+
+	&:hover {
+		background-color: var(--color-white);
+	}
+
+	&:hover p {
+		text-decoration: underline;
+	}
 }
 
 .newsText {
