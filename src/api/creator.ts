@@ -56,11 +56,13 @@ export async function fetchCreators(): Promise<Creator[]> {
 			id: item.id,
 			documentId: item.documentId,
 			instagram: item.instagram,
-			photo: item.photo,
-			worksPhotos: item.worksPhotos,
+			photo: item.photo || null,
+			worksPhotos: item.worksPhotos || [],
 			based: item.based,
 			style: item.style,
 			hide: item.hide,
+			createdAt: item.createdAt,
+			updatedAt: item.updatedAt,
 		}));
 	} catch (error) {
 		console.error("Ошибка при получении списка креаторов:", error);

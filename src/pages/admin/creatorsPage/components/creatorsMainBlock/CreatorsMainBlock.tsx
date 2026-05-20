@@ -7,6 +7,7 @@ import {
 } from "@/api/creator";
 import { getImageUrl } from "@/utils/imageUrl";
 import styles from "./creatorsMainBlock.module.css";
+import type { CreatorImage } from "@/types/api/creator";
 
 interface CreatorsMainBlockProps {
 	editingDocId: string | null;
@@ -14,14 +15,14 @@ interface CreatorsMainBlockProps {
 	based: string;
 	style: string;
 	hide: boolean;
-	photo: any;
-	worksPhotos: any[];
+	photo: CreatorImage | null;
+	worksPhotos: CreatorImage[];
 	setInstagram: (value: string) => void;
 	setBased: (value: string) => void;
 	setStyle: (value: string) => void;
 	setHide: (value: boolean) => void;
-	setPhoto: (value: any) => void;
-	setWorksPhotos: (value: any[]) => void;
+	setPhoto: (value: CreatorImage | null) => void;
+	setWorksPhotos: (value: CreatorImage[]) => void;
 	loadCreators: () => void;
 	setEditingDocId: (value: string | null) => void;
 }
@@ -52,18 +53,16 @@ export default function CreatorsMainBlock({
 	const [worksPhotosIds, setWorksPhotosIds] = useState<number[]>([]);
 	const [worksPhotosLoading, setWorksPhotosLoading] = useState(false);
 
-	const getPhotoUrl = (photoData: any): string | null => {
+	const getPhotoUrl = (photoData: CreatorImage | null): string | null => {
 		if (!photoData) return null;
-		if (typeof photoData === "string") return getImageUrl(photoData);
 		if (photoData.url) return getImageUrl(photoData.url);
 		return null;
 	};
 
-	const getWorksPhotosUrls = (worksPhotosData: any[]): string[] => {
+	const getWorksPhotosUrls = (worksPhotosData: CreatorImage[]): string[] => {
 		if (!Array.isArray(worksPhotosData)) return [];
 		return worksPhotosData
 			.map((item) => {
-				if (typeof item === "string") return getImageUrl(item);
 				if (item.url) return getImageUrl(item.url);
 				return null;
 			})
@@ -117,12 +116,20 @@ export default function CreatorsMainBlock({
 
 			// Добавляем фото только если оно загружено
 			if (photoId) {
-				creatorData.photo = photoId;
+				creatorData.photo = {
+					id: `photo-${Date.now()}`,
+					fileId: photoId,
+					url: photoUrl,
+				};
 			}
 
 			// Добавляем фото работ только если они загружены
 			if (worksPhotosIds.length > 0) {
-				creatorData.worksPhotos = worksPhotosIds;
+				creatorData.worksPhotos = worksPhotosIds.map((id, idx) => ({
+					id: `work-${idx}-${Date.now()}`,
+					fileId: id,
+					url: worksPhotosUrls[idx],
+				}));
 			}
 
 			if (editingDocId) {

@@ -1,7 +1,7 @@
 import { JSX } from "react";
 import { deleteCreator } from "@/api/creator";
 import { getImageUrl } from "@/utils/imageUrl";
-import { Creator } from "@/types/api/creator";
+import { Creator, CreatorImage } from "@/types/api/creator";
 import styles from "./creatorsList.module.css";
 
 interface CreatorsListProps {
@@ -11,8 +11,8 @@ interface CreatorsListProps {
 	setBased: (value: string) => void;
 	setStyle: (value: string) => void;
 	setHide: (value: boolean) => void;
-	setPhoto: (value: any) => void;
-	setWorksPhotos: (value: any[]) => void;
+	setPhoto: (value: CreatorImage | null) => void;
+	setWorksPhotos: (value: CreatorImage[]) => void;
 	loadCreators: () => void;
 }
 
@@ -27,18 +27,16 @@ export default function CreatorsList({
 	setWorksPhotos,
 	loadCreators,
 }: CreatorsListProps): JSX.Element {
-	const getPhotoUrl = (photo: any): string | null => {
+	const getPhotoUrl = (photo: CreatorImage | null): string | null => {
 		if (!photo) return null;
-		if (typeof photo === "string") return getImageUrl(photo);
 		if (photo.url) return getImageUrl(photo.url);
 		return null;
 	};
 
-	const getWorksPhotosUrls = (worksPhotos: any[]): string[] => {
+	const getWorksPhotosUrls = (worksPhotos: CreatorImage[]): string[] => {
 		if (!Array.isArray(worksPhotos)) return [];
 		return worksPhotos
 			.map((item) => {
-				if (typeof item === "string") return getImageUrl(item);
 				if (item.url) return getImageUrl(item.url);
 				return null;
 			})
@@ -111,24 +109,21 @@ export default function CreatorsList({
 								<p>
 									<b>Работы:</b>{" "}
 								</p>
-								{getWorksPhotosUrls(creator.worksPhotos as any[]).length >
-									0 && (
+								{getWorksPhotosUrls(creator.worksPhotos).length > 0 && (
 									<>
 										<div className={styles.worksPreview}>
-											{getWorksPhotosUrls(creator.worksPhotos as any[]).map(
-												(url, i) => (
-													<div key={i} className={styles.worksThumbnail}>
-														<img
-															src={url}
-															alt={`Работа ${i + 1}`}
-															onError={(e) => {
-																(e.target as HTMLImageElement).style.display =
-																	"none";
-															}}
-														/>
-													</div>
-												),
-											)}
+											{getWorksPhotosUrls(creator.worksPhotos).map((url, i) => (
+												<div key={i} className={styles.worksThumbnail}>
+													<img
+														src={url}
+														alt={`Работа ${i + 1}`}
+														onError={(e) => {
+															(e.target as HTMLImageElement).style.display =
+																"none";
+														}}
+													/>
+												</div>
+											))}
 										</div>
 									</>
 								)}
