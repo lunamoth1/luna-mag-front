@@ -12,7 +12,9 @@
 }
 
 .workImg {
-	width: 300px;
+	width: max-content;
+	height: 400px;
+	object-fit: cover;
 }
 
 .name {
