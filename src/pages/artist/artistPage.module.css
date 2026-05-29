@@ -7,17 +7,17 @@
 .worksList {
 	display: flex;
 	flex-wrap: wrap;
-	max-width: 900px;
+	max-width: 800px;
 	margin-right: 100px;
-	/* gap: 10px; */
+	align-items: flex-start;
 }
 
 .workImg {
-	width: auto;
 	max-width: 100%;
-	height: 400px;
+	max-height: 100%;
+	width: auto;
+	height: auto;
 	object-fit: contain;
-	flex: 0 1 auto;
 	min-width: 0;
 }
 

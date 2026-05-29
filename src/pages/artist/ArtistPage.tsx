@@ -34,6 +34,17 @@ export default function ArtistPage() {
 							className={styles.workImg}
 							src={getImageUrl(img.url)}
 							alt={img.alternativeText || `work ${i + 1}`}
+							onLoad={(e) => {
+								const target = e.currentTarget;
+
+								if (target.naturalWidth > target.naturalHeight) {
+									target.style.height = "300px";
+									target.style.width = "auto";
+								} else {
+									target.style.width = "300px";
+									target.style.height = "auto";
+								}
+							}}
 							style={imageMargin(img)}
 						/>
 					))}
