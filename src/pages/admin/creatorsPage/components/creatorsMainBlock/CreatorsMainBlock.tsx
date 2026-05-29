@@ -5,10 +5,10 @@ import {
 	uploadImageToStrapi,
 	uploadMultipleImagesToStrapi,
 } from "@/api/creator";
-import MainBlockMargin from "../mainBlockMargin/mainBlockMargin";
 import { getImageUrl } from "@/utils/imageUrl";
-import styles from "./creatorsMainBlock.module.css";
+import MainBlockMargin from "../mainBlockMargin/MainBlockMargin";
 import type { CreatorImage } from "@/types/api/creator";
+import styles from "./creatorsMainBlock.module.css";
 
 interface CreatorsMainBlockProps {
 	editingDocId: string | null;
