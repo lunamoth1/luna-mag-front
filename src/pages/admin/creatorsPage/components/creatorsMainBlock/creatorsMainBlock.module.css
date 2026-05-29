@@ -60,15 +60,16 @@ select:disabled {
 
 .worksPreview {
 	display: flex;
-	flex-direction: row;
+	flex-direction: column;
 	width: 100%;
 	gap: 0.5rem;
-	flex-wrap: wrap;
+	/* flex-wrap: wrap; */
 	margin-bottom: 0.75rem;
 }
 
 .worksPreview img {
 	object-fit: cover;
+	max-width: 200px;
 }
 
 .urlInputGroup {
@@ -103,10 +104,12 @@ select:disabled {
 }
 
 .previewContainer {
+	display: flex;
+	flex-direction: row;
 	margin-top: 0.75rem;
 	border-radius: 4px;
-	width: 200px;
-	height: 200px;
+	/* width: 200px;
+	height: 200px; */
 	overflow: hidden;
 	background: var(--color-white);
 	border: 1px solid var(--color-gray-300);
@@ -155,9 +158,11 @@ select:disabled {
 }
 
 .preview {
-	height: 100%;
-	width: min-content;
-	height: auto;
+	width: 300px;
+	height: 300px;
+	/* height: 100%; */
+	/* width: min-content; */
+	/* height: auto; */
 	display: block;
 	object-fit: contain;
 }
@@ -244,4 +249,10 @@ select:disabled {
 .submitButton:disabled {
 	background: var(--color-light-green);
 	cursor: not-allowed;
+}
+
+@media (max-width: 600px) {
+	.formSection {
+		padding: 1rem 0.5rem;
+	}
 }

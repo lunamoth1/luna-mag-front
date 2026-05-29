@@ -5,6 +5,7 @@ import {
 	uploadImageToStrapi,
 	uploadMultipleImagesToStrapi,
 } from "@/api/creator";
+import MainBlockMargin from "../mainBlockMargin/mainBlockMargin";
 import { getImageUrl } from "@/utils/imageUrl";
 import styles from "./creatorsMainBlock.module.css";
 import type { CreatorImage } from "@/types/api/creator";
@@ -123,14 +124,22 @@ export default function CreatorsMainBlock({
 				};
 			}
 
-			// Добавляем фото работ только если они загружены
-			if (worksPhotosIds.length > 0) {
-				creatorData.worksPhotos = worksPhotosIds.map((id, idx) => ({
-					id: `work-${idx}-${Date.now()}`,
-					fileId: id,
-					url: worksPhotosUrls[idx],
-				}));
-			}
+			creatorData.worksPhotos =
+				worksPhotosUrls.length > 0
+					? worksPhotosUrls.map((url, idx) => ({
+							id: worksPhotos[idx]?.id || `work-${idx}-${Date.now()}`,
+							fileId: worksPhotosIds[idx] || worksPhotos[idx]?.fileId,
+							url,
+							marginTop: worksPhotos[idx]?.marginTop,
+							marginRight: worksPhotos[idx]?.marginRight,
+							marginBottom: worksPhotos[idx]?.marginBottom,
+							marginLeft: worksPhotos[idx]?.marginLeft,
+							alternativeText: `work ${idx + 1}`,
+						}))
+					: worksPhotos.map((work, idx) => ({
+							...work,
+							alternativeText: `work ${idx + 1}`,
+						}));
 
 			if (editingDocId) {
 				await updateCreator(editingDocId, creatorData);
@@ -238,14 +247,21 @@ export default function CreatorsMainBlock({
 						worksPhotosUrls.length === 0 && (
 							<div className={styles.worksPreview}>
 								{getWorksPhotosUrls(worksPhotos).map((url, i) => (
-									<img
-										key={i}
-										src={url}
-										alt={`Работа ${i + 1}`}
-										onError={(e) => {
-											(e.target as HTMLImageElement).style.display = "none";
-										}}
-									/>
+									<div key={i} style={{ display: "flex" }}>
+										<img
+											src={url}
+											alt={`Работа ${i + 1}`}
+											onError={(e) => {
+												(e.target as HTMLImageElement).style.display = "none";
+											}}
+										/>
+
+										<MainBlockMargin
+											worksPhotos={worksPhotos}
+											setWorksPhotos={setWorksPhotos}
+											index={i}
+										/>
+									</div>
 								))}
 							</div>
 						)}
@@ -271,6 +287,7 @@ export default function CreatorsMainBlock({
 											setWorksPhotosUrls(
 												worksPhotosUrls.filter((_, i) => i !== index),
 											);
+											setWorksPhotos(worksPhotos.filter((_, i) => i !== index));
 										}}
 										className={styles.removeButton}
 										disabled={worksPhotosLoading || isSaving}
@@ -288,6 +305,12 @@ export default function CreatorsMainBlock({
 												(e.target as HTMLImageElement).style.display = "none";
 											}}
 										/>
+
+										<MainBlockMargin
+											worksPhotos={worksPhotos}
+											setWorksPhotos={setWorksPhotos}
+											index={index}
+										/>
 									</div>
 								)}
 							</div>
@@ -297,7 +320,19 @@ export default function CreatorsMainBlock({
 					<div className={styles.buttonsRow}>
 						<button
 							type="button"
-							onClick={() => setWorksPhotosUrls([...worksPhotosUrls, ""])}
+							onClick={() => {
+								setWorksPhotosUrls([...worksPhotosUrls, ""]);
+								setWorksPhotos([
+									...worksPhotos,
+									{
+										url: "",
+										marginTop: undefined,
+										marginRight: undefined,
+										marginBottom: undefined,
+										marginLeft: undefined,
+									} as any,
+								]);
+							}}
 							className={styles.addButton}
 							disabled={worksPhotosLoading || isSaving}
 						>
