@@ -2,6 +2,10 @@ export interface CreatorImage {
 	id: string;
 	fileId: number;
 	url: string;
+	marginTop: number;
+	marginRight: number;
+	marginBottom: number;
+	marginLeft: number;
 }
 
 export interface Creator {

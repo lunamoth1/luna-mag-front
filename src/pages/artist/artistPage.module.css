@@ -9,7 +9,7 @@
 	flex-wrap: wrap;
 	max-width: 900px;
 	margin-right: 100px;
-	gap: 10px;
+	/* gap: 10px; */
 }
 
 .workImg {
