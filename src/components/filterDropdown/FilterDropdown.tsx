@@ -53,7 +53,7 @@ export default function FilterDropdown({
 				className={`${styles.filterButton} ${hasActiveFilters ? styles.active : ""}`}
 				onClick={() => setIsOpen(!isOpen)}
 			>
-				<span>Filter</span>
+				<span className={styles.filterText}>Filter</span>
 				{hasActiveFilters && (
 					<span className={styles.badge}>
 						{selectedBased.length + selectedStyles.length}

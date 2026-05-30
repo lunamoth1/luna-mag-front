@@ -27,6 +27,16 @@ export default function ArtistsPage(): JSX.Element {
 			return matchesSearch && matchesBased && matchesStyle;
 		});
 
+	const sortedCreators = filteredCreators.sort(
+		(a, b) =>
+			new Date(b.createdAt!).getTime() - new Date(a.createdAt!).getTime(),
+	);
+
+	const groupedCreators = [];
+	for (let i = 0; i < sortedCreators.length; i += 2) {
+		groupedCreators.push(sortedCreators.slice(i, i + 2));
+	}
+
 	return (
 		<div className={styles.main}>
 			<div className={styles.filterBar}>
@@ -40,10 +50,16 @@ export default function ArtistsPage(): JSX.Element {
 				/>
 			</div>
 
-			{filteredCreators.length > 0 ? (
-				filteredCreators.map((creator) => (
-					<ArtistButton key={creator.documentId} creator={creator} />
-				))
+			{groupedCreators.length > 0 ? (
+				<div className={styles.artistsContainer}>
+					{groupedCreators.map((pair, index) => (
+						<div key={index} className={styles.row}>
+							{pair.map((creator) => (
+								<ArtistButton key={creator.documentId} creator={creator} />
+							))}
+						</div>
+					))}
+				</div>
 			) : (
 				<div className={styles.emptyState}>
 					No artists were found based on the selected filters

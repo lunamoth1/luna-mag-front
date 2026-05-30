@@ -6,6 +6,7 @@ export interface CreatorImage {
 	marginRight: number;
 	marginBottom: number;
 	marginLeft: number;
+	alternativeText: string | null;
 }
 
 export interface Creator {
