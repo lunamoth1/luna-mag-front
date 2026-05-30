@@ -29,7 +29,7 @@ export default function ArtistsPage(): JSX.Element {
 
 	const sortedCreators = filteredCreators.sort(
 		(a, b) =>
-			new Date(b.createdAt!).getTime() - new Date(a.createdAt!).getTime(),
+			new Date(a.createdAt!).getTime() - new Date(b.createdAt!).getTime(),
 	);
 
 	const groupedCreators = [];
