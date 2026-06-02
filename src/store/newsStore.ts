@@ -1,12 +1,9 @@
 import { create } from "zustand";
-import { NewsItem } from "../types/api/news";
-
-interface NewsState {
-	news: NewsItem[];
-	setNews: (news: NewsItem[]) => void;
-}
+import { NewsState } from "@/types/stores/newsStore";
 
 export const useNewsStore = create<NewsState>((set) => ({
 	news: [],
+	isLoading: true,
 	setNews: (news) => set({ news }),
+	setIsLoading: (isLoading) => set({ isLoading }),
 }));

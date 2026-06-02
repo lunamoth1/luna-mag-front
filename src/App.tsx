@@ -45,18 +45,40 @@ function AppLayout() {
 	const { isAuthenticated } = useAdminStore();
 
 	const setNews = useNewsStore((s) => s.setNews);
-	const setMarquee = useMarqueeStore((s) => s.setMarquee);
+	const setIsNewsLoading = useNewsStore((s) => s.setIsLoading);
+
 	const setCreators = useCreatorsStore((s) => s.setCreators);
+	const setIsCreatorsLoading = useCreatorsStore((s) => s.setIsLoading);
+
+	const setMarquee = useMarqueeStore((s) => s.setMarquee);
 	const setBlogs = useBlogStore((s) => s.setBlogs);
 	const setPartners = usePartnerStore((s) => s.setPartners);
 
 	useEffect(() => {
-		fetchNews().then(setNews);
-		fetchMarquee().then(setMarquee);
-		fetchCreators().then(setCreators);
-		fetchBlogs().then(setBlogs);
-		fetchPartners().then(setPartners);
-	}, [setCreators, setMarquee, setNews, setBlogs, setPartners]);
+		setIsCreatorsLoading(true);
+		setIsNewsLoading(true);
+
+		Promise.all([
+			fetchNews().then((data) => {
+				setNews(data);
+				setIsNewsLoading(false);
+			}),
+			fetchMarquee().then(setMarquee),
+			fetchCreators().then(setCreators),
+			fetchBlogs().then(setBlogs),
+			fetchPartners().then(setPartners),
+		])
+			.catch((err) => console.error("Ошибка загрузки:", err))
+			.finally(() => setIsCreatorsLoading(false));
+	}, [
+		setCreators,
+		setIsCreatorsLoading,
+		setNews,
+		setIsNewsLoading,
+		setMarquee,
+		setBlogs,
+		setPartners,
+	]);
 
 	useEffect(() => {
 		window.scrollTo(0, 0);

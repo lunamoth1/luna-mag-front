@@ -1,10 +1,5 @@
 import { create } from "zustand";
-import type { Partner } from "@/types/api/partner";
-
-interface PartnerState {
-	partners: Partner[];
-	setPartners: (partners: Partner[]) => void;
-}
+import { PartnerState } from "@/types/stores/partnerStore";
 
 export const usePartnerStore = create<PartnerState>((set) => ({
 	partners: [],

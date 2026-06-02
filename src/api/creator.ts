@@ -1,10 +1,8 @@
 import axios from "axios";
 import { API_URL } from "@/constants";
 import type { Creator, EditCreator } from "@/types/api/creator";
+import { useCreatorsStore } from "@/store/creatorsStore";
 
-/**
- * Загружает файл с Cloudinary в Strapi через кастомный эндпоинт
- */
 export async function uploadImageToStrapi(
 	cloudinaryUrl: string,
 	fileName?: string,
@@ -26,9 +24,6 @@ export async function uploadImageToStrapi(
 	}
 }
 
-/**
- * Загружает множество файлов с Cloudinary в Strapi
- */
 export async function uploadMultipleImagesToStrapi(
 	cloudinaryUrls: string[],
 ): Promise<number[]> {
@@ -45,14 +40,18 @@ export async function uploadMultipleImagesToStrapi(
 }
 
 export async function fetchCreators(): Promise<Creator[]> {
+	const { setCreators, setIsLoading } = useCreatorsStore.getState();
+
 	try {
+		setIsLoading(true);
+
 		const res = await axios.get(
 			`${API_URL}/api/creators?populate=*&pagination[pageSize]=1000`,
 		);
 
 		const data = res.data?.data || [];
 
-		return data.map((item: Creator) => ({
+		const formattedCreators = data.map((item: Creator) => ({
 			id: item.id,
 			documentId: item.documentId,
 			instagram: item.instagram,
@@ -64,9 +63,15 @@ export async function fetchCreators(): Promise<Creator[]> {
 			createdAt: item.createdAt,
 			updatedAt: item.updatedAt,
 		}));
+
+		setCreators(formattedCreators);
+
+		return formattedCreators;
 	} catch (error) {
 		console.error("Ошибка при получении списка креаторов:", error);
 		return [];
+	} finally {
+		setIsLoading(false);
 	}
 }
 

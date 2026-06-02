@@ -33,8 +33,9 @@
 	display: inline-block;
 	min-width: 20px;
 	height: 20px;
-	padding: 0 1px 0 0;
+	padding: 1px 1px 0 0;
 	background: var(--color-red);
+	font-family: var(--font-ms-sans-serif);
 	color: var(--color-white);
 	border-radius: 10px;
 	font-size: 16px;
@@ -42,6 +43,7 @@
 	display: flex;
 	align-items: center;
 	justify-content: center;
+	text-align: center;
 }
 
 .filterButton.active .badge {

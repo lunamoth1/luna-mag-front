@@ -1,12 +1,9 @@
 import { create } from "zustand";
-import type { Creator } from "@/types/api/creator";
-
-interface CreatorsState {
-	creators: Creator[];
-	setCreators: (creators: Creator[]) => void;
-}
+import { CreatorsState } from "@/types/stores/creatorsStore";
 
 export const useCreatorsStore = create<CreatorsState>((set) => ({
 	creators: [],
+	isLoading: true,
 	setCreators: (creators) => set({ creators }),
+	setIsLoading: (isLoading) => set({ isLoading }),
 }));

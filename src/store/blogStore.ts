@@ -1,10 +1,5 @@
 import { create } from "zustand";
-import type { BlogPost } from "@/types/api/blog";
-
-interface BlogState {
-	blogs: BlogPost[];
-	setBlogs: (blogs: BlogPost[]) => void;
-}
+import { BlogState } from "@/types/stores/blogStore";
 
 export const useBlogStore = create<BlogState>((set) => ({
 	blogs: [],

@@ -1,4 +1,4 @@
-import { JSX, useState, useEffect } from "react";
+import { JSX, useState, useEffect, useRef } from "react";
 import { Creator } from "@/types/api/creator";
 import styles from "./filterDropdown.module.css";
 
@@ -15,6 +15,8 @@ export default function FilterDropdown({
 	const [selectedBased, setSelectedBased] = useState<string[]>([]);
 	const [selectedStyles, setSelectedStyles] = useState<string[]>([]);
 
+	const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+
 	const uniqueBased = Array.from(
 		new Set(creators.filter((c) => !c.hide && c.based).map((c) => c.based)),
 	).sort();
@@ -22,6 +24,29 @@ export default function FilterDropdown({
 	const uniqueStyles = Array.from(
 		new Set(creators.filter((c) => !c.hide && c.style).map((c) => c.style)),
 	).sort();
+
+	const clearTimer = () => {
+		if (timerRef.current) {
+			clearTimeout(timerRef.current);
+			timerRef.current = null;
+		}
+	};
+
+	const startTimer = () => {
+		clearTimer();
+		timerRef.current = setTimeout(() => {
+			setIsOpen(false);
+		}, 3000);
+	};
+
+	useEffect(() => {
+		if (isOpen) {
+			startTimer();
+		} else {
+			clearTimer();
+		}
+		return () => clearTimer();
+	}, [isOpen]);
 
 	useEffect(() => {
 		onFiltersChange(selectedBased, selectedStyles);
@@ -48,7 +73,11 @@ export default function FilterDropdown({
 		selectedBased.length > 0 || selectedStyles.length > 0;
 
 	return (
-		<div className={styles.container}>
+		<div
+			className={styles.container}
+			onMouseEnter={clearTimer}
+			onMouseLeave={isOpen ? startTimer : undefined}
+		>
 			<button
 				className={`${styles.filterButton} ${hasActiveFilters ? styles.active : ""}`}
 				onClick={() => setIsOpen(!isOpen)}

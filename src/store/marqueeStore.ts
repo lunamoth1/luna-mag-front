@@ -1,10 +1,5 @@
 import { create } from "zustand";
-import type { MarqueeItem } from "@/types/api/marquee";
-
-interface MarqueeState {
-	marquee: MarqueeItem[];
-	setMarquee: (marquee: MarqueeItem[]) => void;
-}
+import { MarqueeState } from "@/types/stores/marqueeStore";
 
 export const useMarqueeStore = create<MarqueeState>((set) => ({
 	marquee: [],
