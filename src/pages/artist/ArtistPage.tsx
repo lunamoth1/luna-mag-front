@@ -4,6 +4,7 @@ import { useCreatorsStore } from "@/store/creatorsStore";
 import Loader from "@/components/loader/Loader";
 import { getImageUrl } from "@/utils/imageUrl";
 import { CreatorImage } from "@/types/api/creator";
+import { useMinDelay } from "@/hooks/useMinDelay";
 import styles from "./artistPage.module.css";
 
 export default function ArtistPage() {
@@ -16,23 +17,20 @@ export default function ArtistPage() {
 
 	const countedImages = useRef<Set<string | number>>(new Set());
 	const [loadedImagesCount, setLoadedImagesCount] = useState(0);
-	const [isMinTimeElapsed, setIsMinTimeElapsed] = useState(false);
 
 	useEffect(() => {
 		setLoadedImagesCount(0);
-		setIsMinTimeElapsed(false);
 		countedImages.current.clear();
-
-		const timer = setTimeout(() => setIsMinTimeElapsed(true), 200);
-		return () => clearTimeout(timer);
 	}, [instagram]);
 
 	const totalImages = creator?.worksPhotos?.length || 0;
 	const imagesLoaded = totalImages === 0 || loadedImagesCount >= totalImages;
 
 	const isImagesLoading = Boolean(creator && !imagesLoaded);
+	const isActualLoading = isStoreLoading || isImagesLoading;
 
-	const isLoading = isStoreLoading || isImagesLoading || !isMinTimeElapsed;
+	const isDelayElapsed = useMinDelay(isActualLoading, 200);
+	const isLoading = isActualLoading || !isDelayElapsed;
 
 	const imageMargin = (image: CreatorImage) => ({
 		marginTop: image.marginTop ? `${image.marginTop}px` : undefined,
@@ -61,16 +59,16 @@ export default function ArtistPage() {
 		setLoadedImagesCount((prev) => prev + 1);
 	};
 
+	if (!isStoreLoading && !creator) {
+		return <div className={styles.notFound}>Author not found</div>;
+	}
+
 	return (
 		<>
 			{isLoading && (
 				<div className={styles.loaderContainer}>
 					<Loader />
 				</div>
-			)}
-
-			{!isLoading && !creator && (
-				<div className={styles.notFound}>Author not found</div>
 			)}
 
 			{creator && (

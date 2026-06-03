@@ -1,17 +1,29 @@
 import { JSX } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useNewsStore } from "@/store/newsStore";
+import { useMinDelay } from "@/hooks/useMinDelay";
 import Loader from "@/components/loader/Loader";
 import styles from "./homeBanner.module.css";
 
 export default function HomeBanner(): JSX.Element {
+	const navigate = useNavigate();
+
 	const news = useNewsStore((s) => s.news);
-	const isLoading = useNewsStore((s) => s.isLoading);
+	const isStoreLoading = useNewsStore((s) => s.isLoading);
+	const isDelayElapsed = useMinDelay(isStoreLoading, 200);
+
+	const isLoading = isStoreLoading || !isDelayElapsed;
 
 	const featuredNews = news.filter((item) => item.featured);
 
+	const handleBannerClick = () => navigate("/news");
+
 	return (
-		<Link to={"/news"} className={styles.container}>
+		<div
+			className={styles.container}
+			onClick={handleBannerClick}
+			style={{ cursor: "pointer" }}
+		>
 			{isLoading ? (
 				<Loader color="black" />
 			) : (
@@ -24,6 +36,7 @@ export default function HomeBanner(): JSX.Element {
 								key={item.id}
 								to={`/news/${encodeURIComponent(item.title)}`}
 								className={styles.newsItem}
+								onClick={(e) => e.stopPropagation()}
 							>
 								{item.title}
 							</Link>
@@ -31,6 +44,6 @@ export default function HomeBanner(): JSX.Element {
 					</div>
 				</>
 			)}
-		</Link>
+		</div>
 	);
 }
