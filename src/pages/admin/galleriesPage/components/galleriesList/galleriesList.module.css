@@ -26,13 +26,14 @@
 }
 
 .item {
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
+	display: grid;
+	grid-template-columns: 120px 1fr auto;
+	gap: 1rem;
+	align-items: start;
 	padding: 1rem;
-	border: 1px solid var(--color-gray-300);
-	border-radius: 4px;
 	background-color: var(--color-white);
+	border-radius: 4px;
+	border: 1px solid var(--color-gray-300);
 	transition: background-color 0.2s;
 }
 
@@ -40,32 +41,71 @@
 	background-color: var(--color-gray-100);
 }
 
+.itemImage {
+	width: 120px;
+	height: 120px;
+	overflow: hidden;
+	border-radius: 4px;
+	background: var(--color-gray-200);
+}
+
+.image {
+	width: 100%;
+	height: 100%;
+	object-fit: contain;
+}
+
+.itemContent {
+	display: flex;
+	flex-direction: column;
+	gap: 0.5rem;
+}
+
 .itemContent h3 {
-	margin: 0 0 0.5rem 0;
-	font-size: 1.1rem;
-	color: var(--color-dark);
+	margin: 0;
+	font-size: 1rem;
+}
+
+.link a {
+	color: var(--color-blue);
+	text-decoration: none;
+	word-break: break-all;
+}
+
+.link a:hover {
+	text-decoration: underline;
+}
+
+.imageUrl {
+	margin: 0;
+	font-size: 0.85rem;
+	color: var(--color-gray-500);
+	word-break: break-all;
+	font-family: monospace;
 }
 
 .date {
 	margin: 0;
-	color: var(--color-gray-500);
 	font-size: 0.85rem;
+	color: var(--color-gray-500);
+	margin-top: 1.5rem;
 }
 
 .actions {
 	display: flex;
+	flex-direction: column;
 	gap: 0.5rem;
+	white-space: nowrap;
 }
 
 .editButton,
 .deleteButton {
-	padding: 0.5rem 1rem;
+	padding: 8px 12px;
 	border: none;
 	border-radius: 4px;
-	font-size: 0.9rem;
+	font-size: 0.85rem;
 	cursor: pointer;
 	transition: all 0.2s;
-	font-weight: 500;
 }
 
 .editButton {
@@ -74,7 +114,7 @@
 }
 
 .editButton:hover {
-	background-color: var(--color-dark-blue);
+	background-color: var(--color-gray-600);
 }
 
 .deleteButton {
@@ -86,15 +126,20 @@
 	background-color: var(--color-dark-red);
 }
 
-@media (max-width: 768px) {
+@media (max-width: 600px) {
 	.item {
-		flex-direction: column;
-		align-items: flex-start;
-		gap: 1rem;
+		grid-template-columns: 80px 1fr;
+		gap: 0.75rem;
+	}
+
+	.itemImage {
+		width: 80px;
+		height: 80px;
 	}
 
 	.actions {
-		width: 100%;
+		grid-column: 1 / -1;
+		flex-direction: row;
 	}
 
 	.editButton,

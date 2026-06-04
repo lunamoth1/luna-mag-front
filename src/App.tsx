@@ -19,6 +19,7 @@ import CreatorsAdminPage from "./pages/admin/creatorsPage/CreatorsAdminPage";
 import NewsAdminPage from "./pages/admin/newsPage/NewsAdminPage";
 import BlogAdminPage from "./pages/admin/blogPage/BlogAdminPage";
 import PartnersAdminPage from "./pages/admin/partnersPage/PartnersAdminPage";
+import GalleriesAdminPage from "./pages/admin/galleriesPage/GalleriesAdminPage";
 
 import SideNav from "./components/sideNav/SideNav";
 import Marquee from "./components/marquee/Marquee";
@@ -29,12 +30,14 @@ import { fetchBlogs } from "./api/blog";
 import { fetchMarquee } from "./api/marquee";
 import { fetchCreators } from "./api/creator";
 import { fetchPartners } from "./api/partner";
+import { fetchGalleries } from "./api/galleries";
 import { useNewsStore } from "./store/newsStore";
 import { useBlogStore } from "./store/blogStore";
 import { useAdminStore } from "./store/adminStore";
 import { useMarqueeStore } from "./store/marqueeStore";
 import { useCreatorsStore } from "./store/creatorsStore";
 import { usePartnerStore } from "./store/partnerStore";
+import { useGalleryStore } from "./store/galleryStore";
 
 import styles from "./styles/app.module.css";
 import NewsPage from "./pages/news/NewsPage";
@@ -52,6 +55,7 @@ function AppLayout() {
 
 	const setMarquee = useMarqueeStore((s) => s.setMarquee);
 	const setBlogs = useBlogStore((s) => s.setBlogs);
+	const setGalleries = useGalleryStore((s) => s.setGalleries);
 	const setPartners = usePartnerStore((s) => s.setPartners);
 
 	useEffect(() => {
@@ -59,25 +63,27 @@ function AppLayout() {
 		setIsNewsLoading(true);
 
 		Promise.all([
-			fetchNews().then((data) => {
-				setNews(data);
-				setIsNewsLoading(false);
-			}),
+			fetchNews().then(setNews),
 			fetchMarquee().then(setMarquee),
 			fetchCreators().then(setCreators),
 			fetchBlogs().then(setBlogs),
+			fetchGalleries().then(setGalleries),
 			fetchPartners().then(setPartners),
 		])
 			.catch((err) => console.error("Ошибка загрузки:", err))
-			.finally(() => setIsCreatorsLoading(false));
+			.finally(() => {
+				setIsCreatorsLoading(false);
+				setIsNewsLoading(false);
+			});
 	}, [
-		setCreators,
-		setIsCreatorsLoading,
 		setNews,
-		setIsNewsLoading,
 		setMarquee,
+		setCreators,
 		setBlogs,
+		setGalleries,
 		setPartners,
+		setIsCreatorsLoading,
+		setIsNewsLoading,
 	]);
 
 	useEffect(() => {
@@ -115,6 +121,7 @@ function AppLayout() {
 						<Route path="/admin/news" element={<NewsAdminPage />} />
 						<Route path="/admin/blog" element={<BlogAdminPage />} />
 						<Route path="/admin/partners" element={<PartnersAdminPage />} />
+						<Route path="/admin/galleries" element={<GalleriesAdminPage />} />
 					</Routes>
 				</main>
 			</div>

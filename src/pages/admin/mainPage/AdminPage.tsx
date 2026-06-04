@@ -22,6 +22,7 @@ export default function AdminPage(): JSX.Element {
 					<AdminCard title="Новости" to="/admin/news" />
 					<AdminCard title="Блог" to="/admin/blog" />
 					<AdminCard title="Партнеры" to="/admin/partners" />
+					<AdminCard title="Галерея" to="/admin/galleries" />
 				</div>
 			</div>
 		</>

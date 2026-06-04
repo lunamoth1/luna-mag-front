@@ -1,3 +1,31 @@
-.text {
+.main {
 	color: var(--color-white);
+	display: grid;
+	grid-template-columns: repeat(3, minmax(0, 300px));
+	gap: 60px;
+	align-items: start;
+}
+
+.galleryItem {
+	margin-bottom: 80px;
+	max-width: 300px;
+}
+
+.galleryImage {
+	width: 300px;
+	height: auto;
+}
+
+.linkButtonContainer {
+	margin: 30px 15px 0;
+	padding: 4px;
+	text-align: center;
+	border: 1px solid var(--color-white);
+	cursor: pointer;
+}
+
+.linkButton {
+	padding: 10px;
+	color: var(--color-white);
+	text-decoration: none;
 }
