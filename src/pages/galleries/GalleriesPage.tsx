@@ -6,6 +6,12 @@ import styles from "./galleriesPage.module.css";
 export default function GalleriesPage(): JSX.Element {
 	const { galleries } = useGalleryStore();
 
+	if (galleries.length === 0) {
+		return (
+			<div className={styles.main}>No artwork available at the moment</div>
+		);
+	}
+
 	return (
 		<div className={styles.main}>
 			{galleries.map((gallery) => (
