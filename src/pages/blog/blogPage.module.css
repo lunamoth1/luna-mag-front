@@ -1,7 +1,13 @@
-.container {
+.main {
 	color: var(--color-white);
 }
 
 .blogList {
 	margin-bottom: 80px;
+}
+
+@media (max-width: 720px) {
+	.main {
+		padding: 0 16px;
+	}
 }

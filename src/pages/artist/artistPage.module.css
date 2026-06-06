@@ -3,7 +3,7 @@
 	margin-left: 100px;
 }
 
-.container {
+.main {
 	display: flex;
 	flex-direction: row;
 	margin-bottom: 300px;
@@ -49,4 +49,11 @@
 	font-size: 1.1rem;
 	margin-top: 48px;
 	margin-left: 20px;
+}
+
+@media (max-width: 720px) {
+	.main {
+		padding: 0 16px;
+		background: #cc0606;
+	}
 }

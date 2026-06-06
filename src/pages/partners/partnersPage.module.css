@@ -8,3 +8,9 @@
 .text {
 	color: var(--color-white);
 }
+
+@media (max-width: 720px) {
+	.main {
+		padding: 0 16px;
+	}
+}

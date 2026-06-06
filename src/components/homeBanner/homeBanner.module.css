@@ -47,9 +47,11 @@
 @media (max-width: 720px) {
 	.container {
 		flex-direction: column;
-		gap: 20px;
+		gap: 30px;
 		height: auto;
 		padding: 20px 0;
+		margin-right: 0;
+		padding: 16px;
 	}
 
 	.newsText {

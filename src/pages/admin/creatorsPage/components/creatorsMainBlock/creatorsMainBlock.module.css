@@ -251,7 +251,7 @@ select:disabled {
 	cursor: not-allowed;
 }
 
-@media (max-width: 600px) {
+@media (max-width: 720px) {
 	.formSection {
 		padding: 1rem 0.5rem;
 	}

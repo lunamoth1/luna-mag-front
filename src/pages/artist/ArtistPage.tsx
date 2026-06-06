@@ -73,7 +73,7 @@ export default function ArtistPage() {
 
 			{creator && (
 				<div
-					className={styles.container}
+					className={styles.main}
 					style={{ display: isLoading ? "none" : "flex" }}
 				>
 					<div className={styles.worksList}>

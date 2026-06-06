@@ -4,7 +4,7 @@ import styles from "./magazinePage.module.css";
 
 export default function MagazinePage(): JSX.Element {
 	return (
-		<div className={styles.container}>
+		<div className={styles.main}>
 			<HomeBanner />
 		</div>
 	);

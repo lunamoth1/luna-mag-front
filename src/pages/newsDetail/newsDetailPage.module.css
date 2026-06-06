@@ -49,9 +49,13 @@
 	word-wrap: break-word;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 720px) {
+	.main {
+		padding: 0 16px;
+	}
+
 	.container {
-		padding: 20px 16px;
+		padding: 16px;
 	}
 
 	.newsTitle {

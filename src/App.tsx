@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
 import { Analytics } from "@vercel/analytics/react";
 
@@ -47,6 +47,8 @@ function AppLayout() {
 	const isAdmin = location.pathname.startsWith("/admin");
 	const { isAuthenticated } = useAdminStore();
 
+	const [isMenuOpen, setIsMenuOpen] = useState(false);
+
 	const setNews = useNewsStore((s) => s.setNews);
 	const setIsNewsLoading = useNewsStore((s) => s.setIsLoading);
 
@@ -57,6 +59,10 @@ function AppLayout() {
 	const setBlogs = useBlogStore((s) => s.setBlogs);
 	const setGalleries = useGalleryStore((s) => s.setGalleries);
 	const setPartners = usePartnerStore((s) => s.setPartners);
+
+	useEffect(() => {
+		setIsMenuOpen(false);
+	}, [location.pathname]);
 
 	useEffect(() => {
 		setIsCreatorsLoading(true);
@@ -98,10 +104,18 @@ function AppLayout() {
 
 	return (
 		<div className={isAdmin ? styles.adminContainer : styles.mainContainer}>
-			{!isAdmin && <Header />}
+			{!isAdmin && (
+				<Header onMenuToggle={() => setIsMenuOpen((prev) => !prev)} />
+			)}
+
+			{!isAdmin && isMenuOpen && (
+				<div className={styles.overlay} onClick={() => setIsMenuOpen(false)} />
+			)}
 
 			<div className={styles.contentContainer}>
-				{!isAdmin && <SideNav />}
+				{!isAdmin && (
+					<SideNav isOpen={isMenuOpen} onClose={() => setIsMenuOpen(false)} />
+				)}
 
 				<main className={styles.navigationContent}>
 					<Routes>

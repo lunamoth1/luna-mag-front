@@ -20,9 +20,39 @@
 	left: 20%;
 }
 
+.burger {
+	display: none;
+	position: absolute;
+	bottom: 0;
+	top: 0;
+	width: 62px;
+	height: 100%;
+	cursor: pointer;
+	z-index: 1100;
+}
+
+.burger span {
+	display: block;
+	width: 24px;
+	height: 2px;
+	background: var(--color-white);
+	margin: 5px auto;
+}
+
 @media (max-width: 720px) {
 	.img {
 		height: 89px;
 		object-fit: cover;
+	}
+
+	.logo {
+		width: clamp(200px, 50vw, 300px);
+		left: 50%;
+		transform: translateX(-50%);
+		bottom: 6px;
+	}
+
+	.burger {
+		display: block;
 	}
 }

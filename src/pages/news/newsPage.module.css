@@ -12,5 +12,10 @@
 	flex-direction: column;
 	gap: 10px;
 	color: var(--color-white);
-	margin-top: 50px;
+}
+
+@media (max-width: 720px) {
+	.main {
+		padding: 0 16px;
+	}
 }

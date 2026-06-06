@@ -86,7 +86,7 @@
 	background-color: var(--color-dark-red);
 }
 
-@media (max-width: 768px) {
+@media (max-width: 720px) {
 	.item {
 		flex-direction: column;
 		align-items: flex-start;

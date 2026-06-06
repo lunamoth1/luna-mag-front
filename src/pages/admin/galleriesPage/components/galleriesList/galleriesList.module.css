@@ -125,8 +125,7 @@
 .deleteButton:hover {
 	background-color: var(--color-dark-red);
 }
-
-@media (max-width: 600px) {
+@media (max-width: 720px) {
 	.item {
 		grid-template-columns: 80px 1fr;
 		gap: 0.75rem;
