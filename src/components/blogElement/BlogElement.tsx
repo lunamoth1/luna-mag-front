@@ -16,7 +16,7 @@ export default function BlogElement({ blog }: BlogElementProps): JSX.Element {
 			{blog.images && blog.images.length > 0 && (
 				<div className={styles.imagesGrid}>
 					{blog.images.map((image) => (
-						<div key={image.id}>
+						<div key={image.id} className={styles.imageItem}>
 							<img
 								src={getImageUrl(image.url)}
 								alt={image.description}

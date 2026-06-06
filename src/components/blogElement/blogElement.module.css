@@ -20,17 +20,25 @@
 
 .imagesGrid {
 	display: grid;
-	grid-template-columns: 300px 300px;
-	gap: 20px;
+	grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+	gap: 16px;
 	margin-top: 4px;
 	margin-bottom: 24px;
+	align-items: start;
+}
+
+.imageItem {
+	display: flex;
+	flex-direction: column;
+	gap: 6px;
 }
 
 .galleryImage {
+	width: 100%;
 	max-width: 290px;
-	height: max-content;
-	object-fit: none;
+	height: auto;
 	display: block;
+	object-fit: cover;
 	transition: transform 0.3s ease;
 }
 
