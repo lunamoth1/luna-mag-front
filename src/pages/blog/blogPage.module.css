@@ -1,3 +1,8 @@
+.emptyState {
+	color: var(--color-white);
+	font-size: 16px;
+}
+
 .main {
 	color: var(--color-white);
 }
@@ -7,6 +12,10 @@
 }
 
 @media (max-width: 720px) {
+	.emptyState {
+		text-align: center;
+	}
+
 	.main {
 		padding: 0 16px;
 	}

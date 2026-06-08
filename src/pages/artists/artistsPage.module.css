@@ -26,12 +26,15 @@
 }
 
 .emptyState {
-	color: var(--color-gray-500);
+	color: var(--color-white);
 	font-size: 16px;
 }
 
 @media (max-width: 720px) {
 	.main {
 		padding: 0 16px;
+	}
+	.emptyState {
+		text-align: center;
 	}
 }

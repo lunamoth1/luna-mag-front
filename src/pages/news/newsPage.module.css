@@ -15,7 +15,17 @@
 }
 
 @media (max-width: 720px) {
+	.loaderContainer {
+		display: flex;
+		margin-left: 0;
+		justify-content: center;
+	}
+
 	.main {
 		padding: 0 16px;
+	}
+
+	.noNews {
+		text-align: center;
 	}
 }

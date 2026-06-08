@@ -1,3 +1,8 @@
+.emptyState {
+	color: var(--color-white);
+	font-size: 16px;
+}
+
 .main {
 	display: flex;
 	flex-direction: column;
@@ -10,6 +15,10 @@
 }
 
 @media (max-width: 720px) {
+	.emptyState {
+		text-align: center;
+	}
+
 	.main {
 		padding: 0 16px;
 	}

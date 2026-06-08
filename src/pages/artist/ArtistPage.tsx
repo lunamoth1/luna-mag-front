@@ -78,7 +78,7 @@ export default function ArtistPage() {
 		setLoadedImagesCount((prev) => prev + 1);
 	};
 
-	if (!isStoreLoading && !creator) {
+	if (!isStoreLoading && !creator && true) {
 		return <div className={styles.notFound}>Author not found</div>;
 	}
 
