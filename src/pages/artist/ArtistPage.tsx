@@ -1,10 +1,10 @@
 import { useParams } from "react-router-dom";
 import { useState, useEffect, useRef } from "react";
 import { useCreatorsStore } from "@/store/creatorsStore";
+import { useMinDelay } from "@/hooks/useMinDelay";
 import Loader from "@/components/loader/Loader";
 import { getImageUrl } from "@/utils/imageUrl";
 import { CreatorImage } from "@/types/api/creator";
-import { useMinDelay } from "@/hooks/useMinDelay";
 import styles from "./artistPage.module.css";
 
 export default function ArtistPage() {
@@ -39,6 +39,26 @@ export default function ArtistPage() {
 		marginLeft: image.marginLeft ? `${image.marginLeft}px` : undefined,
 	});
 
+	// const handleImageLoad = (
+	// 	e: React.SyntheticEvent<HTMLImageElement>,
+	// 	imgId: string | number,
+	// ) => {
+	// 	if (countedImages.current.has(imgId)) return;
+
+	// 	countedImages.current.add(imgId);
+
+	// 	const target = e.currentTarget;
+	// 	if (target.naturalWidth > target.naturalHeight) {
+	// 		target.style.height = "300px";
+	// 		target.style.width = "auto";
+	// 	} else {
+	// 		target.style.width = "300px";
+	// 		target.style.height = "auto";
+	// 	}
+
+	// 	setLoadedImagesCount((prev) => prev + 1);
+	// };
+
 	const handleImageLoad = (
 		e: React.SyntheticEvent<HTMLImageElement>,
 		imgId: string | number,
@@ -48,12 +68,11 @@ export default function ArtistPage() {
 		countedImages.current.add(imgId);
 
 		const target = e.currentTarget;
+
 		if (target.naturalWidth > target.naturalHeight) {
-			target.style.height = "300px";
-			target.style.width = "auto";
+			target.setAttribute("data-orientation", "landscape");
 		} else {
-			target.style.width = "300px";
-			target.style.height = "auto";
+			target.setAttribute("data-orientation", "portrait");
 		}
 
 		setLoadedImagesCount((prev) => prev + 1);
